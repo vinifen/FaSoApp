@@ -1,4 +1,4 @@
-## 📱 Mobile Devices Activity 1 
+## 📱 Mobile Devices Activity 1 - Components & UseState
 
 - Create a new project using Expo with the TypeScript blank template, and inside it, create a folder named "components".
 
