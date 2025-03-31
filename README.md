@@ -1,2 +1,2 @@
-## 📱 Mobile Devices Activity 1 - Screens & navigations
+## 📱 Mobile Devices Activity 1 - Styles & Layouts
 
