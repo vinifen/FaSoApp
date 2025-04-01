@@ -1,4 +1,4 @@
-## 📱 Mobile Devices Activity 1 - Firebase
+## 📱 Mobile Devices Activity - Firebase
 
 ### Expo Project with Firebase Integration:
 
