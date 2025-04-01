@@ -1,1 +1,3 @@
-## 📱 Mobile Devices Activity - Context API
+## 📱 Mobile Devices Activity - Rest
+
+- Rest activity solution 
