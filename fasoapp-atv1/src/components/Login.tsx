@@ -1,11 +1,13 @@
 import { View, Text, TextInput, Button } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 
 
 
 export default function Login() {
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = () => {console.log('Username:', username, 'Password:', password)}
 
   return (
     <View>
@@ -14,7 +16,7 @@ export default function Login() {
       <TextInput placeholder="Password" onChangeText={(text) => setPassword(text)} secureTextEntry/>
       <Button
         title='Submit'
-        onPress={() => {console.log('Username:', username, 'Password:', password)}}
+        onPress={handleLogin}
       />
     </View>
   )
