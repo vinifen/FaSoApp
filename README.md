@@ -1,21 +1,18 @@
-## 📱 Mobile Devices Activity - Components & UseState
+## 📱 Mobile Devices Activity - Componentes e useState
 
-- Create a new project using Expo with the TypeScript blank template, and inside it, create a folder named "components".
+- Crie um projeto novo usando expo, com o template typescript blank, nele crie uma pasta “components”;
 
-- In the "components" folder, create a Function Component called "Login.tsx". You can use the "rnf" shortcut if you have this extension installed in VSCode.
+- Na pasta “components”, crie um componente do tipo Function chamado “Login.tsx”. Você pode usar o atalho “rnf” caso tenha esta extensão instalada no VSCode;
 
-- Import the "Login.tsx" component into the main component ("App.tsx") and add it inside the View so that it is rendered.
+- Importe o componente “Login.tsx” no componente principal (“App.tsx”) e adicione ele na View para que seja renderizado;
 
-- In the "Login.tsx" component, create two TextInput fields, each with its own useState. Name them "username" and "password".
+- No componente “Login.tsx”, crie dois TextInput, cada um com um useState. Nomeie-os “username” e “password”.
 
-- 💡 Tip: Check the TextInput documentation to understand how it works.
+- 💡 Dica: acesse a documentação do TextInput para saber como ele funciona;
 
-- 💡 Tip: For the password field, you can use the "secureTextEntry" prop to hide the input details on the screen.
+- 💡 Dica: para o password, você pode usar a prop “secureTextEntry” para omitir detalhes da entrada de texto na tela;
 
-- Ensure that the text input works properly and that the values are being stored in their respective useState variables.
+- Certifique-se de que a entrada de texto está funcionando e que os valores estão sendo armazenados em seus respectivos useState’s;
 
-- Finally, add a Button in the "Login.tsx" component, and make sure that tapping this button prints the "username" and "password" state values in the terminal (console.log).
+- Por fim, adicione um Button no componente “Login.tsx”, faça com que os toques neste button imprimam no terminal (console.log) os valores dos estados “username” e “password”;
 
-- Implement the activity as described, host the solution in a public GitHub repository, and submit the link on Moodle.
-
-- During one of the classes, present your solution to the professor.
