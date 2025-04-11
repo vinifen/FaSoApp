@@ -6,7 +6,6 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Login />
-      <Text>Open up App.tsx to start working on your sssapsssp!</Text>
       <StatusBar style="auto" />
     </View>
   );
