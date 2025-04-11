@@ -1,4 +1,4 @@
-## 📱 Mobile Devices Activity - Componentes e useState
+## 📱 1 - Componentes e useState
 
 - Crie um projeto novo usando expo, com o template typescript blank, nele crie uma pasta “components”;
 
