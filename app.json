@@ -4,12 +4,12 @@
     "slug": "fasoapp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/fasoapp.png",
     "userInterfaceStyle": "light",
-    "scheme": "your-app-scheme",
+    "scheme": "fasoapp",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/fasoapp.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
