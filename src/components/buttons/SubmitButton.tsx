@@ -15,17 +15,17 @@ export default function SubmitButton({ title, onPress }: SubmitButtonProps) {
 }
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#4CAF50', // Cor do botão
+    backgroundColor: '#4CAF50',
     paddingVertical: 12,
     paddingHorizontal: 32,
-    borderRadius: 8, // Bordas arredondadas
+    borderRadius: 8,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
   },
   buttonText: {
-    color: '#fff', // Cor do texto
+    color: '#fff', 
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
