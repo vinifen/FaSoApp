@@ -5,7 +5,7 @@ import { Link } from 'expo-router';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsasdfx to start working on your app!</Text>
+      <Text className='bg-black'>Open up App.tsasdfx to start working on your app!</Text>
       <StatusBar style="auto" />
       <Link href="/authentication">
         <Text>Login</Text>
