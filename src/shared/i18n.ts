@@ -7,7 +7,7 @@ import pt from '../../assets/locales/pt.json';
 
 i18n.use(initReactI18next).init({
 
-  lng: Localization.getLocales() ? 'pt' : 'en',
+  lng: Localization.getLocales()[0].languageCode || 'en',
   fallbackLng: 'en',
   resources: {
     en: { translation: en },

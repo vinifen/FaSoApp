@@ -4,12 +4,12 @@
     "slug": "fasoapp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/fasoapp.png",
-    "userInterfaceStyle": "light",
+    "icon": "./assets/images/fasoapp-logo.png",
+    "userInterfaceStyle": "automatic",
     "scheme": "fasoapp",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/fasoapp.png",
+      "image": "./assets/images/fasoapp-logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -18,12 +18,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/images/fasoapp-logo.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png",
+      "favicon": "./assets/images/fasoapp-logo.png",
       
       "bundler": "metro"
     },

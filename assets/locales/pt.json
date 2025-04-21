@@ -1,5 +1,6 @@
 {
   "hello": "Olá!",
   "welcome": "Bem-vindo ao app.",
-  "penis": "penis"
+  "change_theme": "Mudar tema",
+  "change_locale": "Mudar idioma"
 }
