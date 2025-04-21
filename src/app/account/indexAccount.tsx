@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-export default function indexAccount() {
+export default function Account() {
   return (
     <View>
       <Text>indexAccount</Text>
