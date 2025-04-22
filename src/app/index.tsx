@@ -1,4 +1,3 @@
-
 import {View} from 'react-native';
 import Home from '../shared/components/home/indexHome';
 
