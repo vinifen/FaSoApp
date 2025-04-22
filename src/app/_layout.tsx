@@ -23,7 +23,7 @@ function Content() {
   const deviceTheme = useColorScheme();
   const { theme, setTheme, currentlyTheme } = useTheme();
   const navigation = useNavigation();
-
+  
   const openSidenav = () => {
     navigation.dispatch(DrawerActions.openDrawer());
   };
@@ -32,7 +32,7 @@ function Content() {
       setTheme(deviceTheme);
     }
   }, [deviceTheme]);
-
+  
   return (
     <>
     <StatusBar backgroundColor={theme.primary}/>
@@ -83,7 +83,7 @@ function Content() {
           />
         ),
       }}
-      drawerContent = {(props) => <CustomDrawerContent {...props}/>}
+      drawerContent = {() => <CustomDrawerContent/>}
     />
     </>
   );

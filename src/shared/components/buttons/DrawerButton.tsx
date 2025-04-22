@@ -1,4 +1,4 @@
-import { View, Text, Pressable, TouchableOpacity } from 'react-native'
+import { Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import DefaulButtonType from '../../types/DefaultButtonType'
 import { useTheme } from '../../hook/useTheme'

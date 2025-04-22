@@ -6,6 +6,12 @@
   "hello_user": "Hello",
   
   "dark_theme": "Dark Theme",
+  "light_theme": "Light Theme",
   "language": "Language",
-  "Logout": "Logout"
+  "logout": "Logout",
+
+  "english": "English",
+  "portuguese": "Portuguese",
+
+  "rights_reserved": "All rights reserved ViniciusFn"
 }
