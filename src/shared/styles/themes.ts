@@ -5,7 +5,7 @@ export const dark = {
   secundary: '#9BB4C5',
   input: '#4D5056',
   button: '#4D5056',
-  background: '#4D5056',
+  background: '#282B30',
   details: '#4D5056'
 } as const;
 
@@ -13,7 +13,7 @@ export const light = {
   primary: '#E3E3E3',
   secundary:'#262F38',
   input: '#FFFFFF',
-  button: '#FFFFF',
+  button: '#E3E3E3',
   background: '#C4C4C4',
   details: '#262F38'
 } as const;

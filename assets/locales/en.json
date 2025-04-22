@@ -2,5 +2,10 @@
   "hello": "Hello!",
   "welcome": "Welcome to the app.",
   "change_theme": "Change theme",
-   "change_locale": "Change language"
+  "change_locale": "Change language",
+  "hello_user": "Hello",
+  
+  "dark_theme": "Dark Theme",
+  "language": "Language",
+  "Logout": "Logout"
 }
