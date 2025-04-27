@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import CustomDrawerContent from '../shared/components/CustomDrawerContent';
+import isEnvironmentsExists from '../shared/utils/isEnvironmentsExists';
 
 export default function Layout() {
   return (
@@ -20,6 +21,7 @@ export default function Layout() {
 }
 
 function Content() {
+  isEnvironmentsExists();
   const deviceTheme = useColorScheme();
   const { theme, setTheme, currentlyTheme } = useTheme();
   const navigation = useNavigation();

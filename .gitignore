@@ -34,3 +34,8 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+# environments
+environments/cloudinaryPath.ts
+environments/firebaseConfig.ts
+
