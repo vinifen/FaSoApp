@@ -1,6 +1,5 @@
 {
-  "hello": "Olá!",
-  "welcome": "Bem-vindo ao app.",
+  "welcome_app": "Bem-vindo ao app.",
   "change_theme": "Mudar tema",
   "change_locale": "Mudar idioma",
   "hello_user": "Olá",
@@ -9,9 +8,29 @@
   "light_theme": "Light Theme",
   "language": "Idioma",
   "logout": "Sair",
-
+  
   "english": "Inglês",
   "portuguese": "Português", 
-
-   "rights_reserved": "Todos os direitos reservados ViniciusFn"
+  
+  "rights_reserved": "Todos os direitos reservados ViniciusFn",
+  
+  "email_error_amount": "Email deve ser menor que 100 caracteres.",
+  "email_error_format": "Formato invalido de email.",
+  
+  "username_error_amount": "O nome de usuário deve ter no máximo 60 caracteres.",
+  "username_error_invalid_characters": "O nome de usuário só pode conter letras, números, underscores, hifens e pontos.",
+  
+  "password_error_min_length": "A senha deve ter pelo menos 6 caracteres.",
+  "password_error_max_length": "A senha não pode ter mais de 71 caracteres.",
+  
+  "welcome": "Welcome",
+  "email": "Email",
+  "username": "Username",
+  "password": "Password",
+  "password_confirm": "Confirm password",
+  "create_user": "Create User",
+  "user_created_successfully": "User created successfully!",
+  "unexpected_error": "An unexpected error occurred."
+  
+  
 }

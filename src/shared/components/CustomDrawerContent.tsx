@@ -38,7 +38,7 @@ export default function CustomDrawerContent() {
         <Feather
           name="menu"
           size={24}
-          color={theme.secundary} 
+          color={theme.secondary} 
           className='ml-5'
           onPress={closeSidenav} 
         />
@@ -48,11 +48,11 @@ export default function CustomDrawerContent() {
         <MaterialCommunityIcons 
           name="account" 
           size={35} 
-          color={theme.secundary} 
+          color={theme.secondary} 
           className='mb-2'
         />
         <Text 
-          style={{color: theme.secundary}}
+          style={{color: theme.secondary}}
           className='text-lg'
         >{t('hello_user')} Vinicius</Text>
       </View>
@@ -70,7 +70,7 @@ export default function CustomDrawerContent() {
           />
         </View>
         <Text 
-          style={{color: theme.secundary}}
+          style={{color: theme.secondary}}
           className='text-xs mb-2 text-center'
         >{t("rights_reserved")}</Text>
       </View>
