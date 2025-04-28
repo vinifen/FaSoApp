@@ -47,8 +47,8 @@ function Content() {
           height: 80
         },
         
-        drawerInactiveTintColor: theme.secundary,
-        drawerActiveTintColor: theme.secundary,
+        drawerInactiveTintColor: theme.secondary,
+        drawerActiveTintColor: theme.secondary,
         headerTitle: () => (
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             {currentlyTheme === "light" ? (
@@ -65,7 +65,7 @@ function Content() {
               />
             )}
             <Text
-              style={{ color: theme.secundary }}
+              style={{ color: theme.secondary }}
               className='font-bold text-xl'
             >
               FaSoApp
@@ -77,7 +77,7 @@ function Content() {
           <Feather
             name="menu"
             size={24}
-            color={theme.secundary} 
+            color={theme.secondary} 
             className='mr-5'
             onPress={openSidenav} 
           />
