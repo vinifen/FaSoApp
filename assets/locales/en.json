@@ -3,9 +3,13 @@
   "change_theme": "Change theme",
   "change_locale": "Change language",
   "hello_user": "Hello",
+
+  "register": "Register",
+  "login": "Login",
   
   "dark_theme": "Dark Theme",
   "light_theme": "Light Theme",
+  
   "language": "Language",
   "logout": "Logout",
   
@@ -24,7 +28,7 @@
   "password_error_max_length": "Password cannot be longer than 71 characters.",
   
   
-  "welcome": "Welcome",
+  "welcome": "Welcome!",
   "email": "Email",
   "username": "Username",
   "password": "Password",

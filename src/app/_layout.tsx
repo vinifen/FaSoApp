@@ -1,5 +1,5 @@
 import { Drawer } from 'expo-router/drawer';
-import { Image, Text, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { useColorScheme } from 'react-native';
 import Feather from '@expo/vector-icons/Feather';
 import "../../global.css";
@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import CustomDrawerContent from '../shared/components/CustomDrawerContent';
+import { useRouter } from 'expo-router';
 
 export default function Layout() {
   return (
@@ -23,6 +24,7 @@ function Content() {
   const deviceTheme = useColorScheme();
   const { theme, setTheme, currentlyTheme } = useTheme();
   const navigation = useNavigation();
+  const router = useRouter();
   
   const openSidenav = () => {
     navigation.dispatch(DrawerActions.openDrawer());
@@ -50,8 +52,11 @@ function Content() {
         drawerInactiveTintColor: theme.secondary,
         drawerActiveTintColor: theme.secondary,
         headerTitle: () => (
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            {currentlyTheme === "light" ? (
+          <TouchableOpacity
+            onPress={() => router.push('')}
+            style={{ flexDirection: 'row', alignItems: 'center' }}
+          >
+            {currentlyTheme === 'light' ? (
               <Image
                 source={require('../../assets/images/fasoapp-logo.png')}
                 resizeMode="contain"
@@ -64,14 +69,10 @@ function Content() {
                 className="w-9 h-9 mr-2"
               />
             )}
-            <Text
-              style={{ color: theme.secondary }}
-              className='font-bold text-xl'
-            >
+            <Text style={{ color: theme.secondary }} className="font-bold text-xl">
               FaSoApp
             </Text>
-            
-          </View>
+          </TouchableOpacity>
         ),
         headerRight: () => (
           <Feather

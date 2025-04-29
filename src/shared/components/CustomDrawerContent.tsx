@@ -58,8 +58,9 @@ export default function CustomDrawerContent() {
       </View>
       
       <View style={{ flex: 7 }} className='mx-4 justify-between'>
-        <View className='justify-between h-40 mt-6'>
+        <View className='justify-between h-48 mt-6'>
           <DrawerButton title={"Login"} onPress={() => router.push('/login/indexLogin')}/>
+          <DrawerButton title={t('register')} onPress={() => router.push('/register/indexRegister')}/>
           <DrawerButton 
             title={`${currentlyTheme === "light" ? t("light_theme") : (t("dark_theme"))}`} 
             onPress={toggleTheme} 

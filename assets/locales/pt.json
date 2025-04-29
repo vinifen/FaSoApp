@@ -3,9 +3,12 @@
   "change_theme": "Mudar tema",
   "change_locale": "Mudar idioma",
   "hello_user": "Olá",
+
+  "register": "Registrar-se",
+  "login": "Login",
   
   "dark_theme": "Tema Escuro",
-  "light_theme": "Light Theme",
+  "light_theme": "Tema Claro",
   "language": "Idioma",
   "logout": "Sair",
   
@@ -23,14 +26,14 @@
   "password_error_min_length": "A senha deve ter pelo menos 6 caracteres.",
   "password_error_max_length": "A senha não pode ter mais de 71 caracteres.",
   
-  "welcome": "Welcome",
+  "welcome": "Bem-vindo!",
   "email": "Email",
-  "username": "Username",
-  "password": "Password",
-  "password_confirm": "Confirm password",
-  "create_user": "Create User",
-  "user_created_successfully": "User created successfully!",
-  "unexpected_error": "An unexpected error occurred."
+  "username": "Nome de usuário",
+  "password": "Senha",
+  "password_confirm": "Confirma senha",
+  "create_user": "Criar usuário",
+  "user_created_successfully": "Usuário criado com sucesso!",
+  "unexpected_error": "Ocorreu um erro inexperado."
   
   
 }
