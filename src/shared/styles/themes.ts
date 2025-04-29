@@ -15,7 +15,7 @@ export const dark = {
 export const light = {
   primary: '#E3E3E3',
   secondary:'#262F38',
-  input: '#FFFFFF',
+  input: '#DBDBDB',
   button: '#E3E3E3',
   background: '#C4C4C4',
   details: '#262F38',
