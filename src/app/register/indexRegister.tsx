@@ -44,7 +44,7 @@ export default function Register() {
     <View style={{ backgroundColor: theme.background, flex: 1 }}>
       <View className="h-2/6 justify-center items-center">
         <Text style={{ color: theme.secondary }} className="text-3xl">
-          {t('welcome') + " " + t('login')}
+          {t('welcome') + " " + t('register')}
         </Text>
       </View>
       
