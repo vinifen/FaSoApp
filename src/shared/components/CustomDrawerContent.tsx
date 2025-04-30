@@ -34,31 +34,41 @@ export default function CustomDrawerContent() {
   return (
     <View style={{ flex: 1, backgroundColor: theme.primary}}>
 
-      <View style={{flex: 1.1}} className='justify-center'>
-        <Feather
-          name="menu"
-          size={24}
-          color={theme.secondary} 
-          className='ml-5'
-          onPress={closeSidenav} 
-        />
+      <View style={{
+        height: 80,
+      }}>
+        <View style={{
+          flex: 1, 
+          justifyContent: 'space-around',   
+          alignItems: 'flex-end'
+        }}>
+          <Feather
+            name="menu"
+            size={24}
+            color={theme.secondary} 
+            onPress={closeSidenav} 
+          />
+        </View>
       </View>
       
-      <View style={{ flex: 1 }} className='justify-end items-center'>
+      <View style={{ 
+        flex: 1,
+        justifyContent: "center", 
+        alignItems: "center" 
+      }} >
         <MaterialCommunityIcons 
           name="account" 
           size={35} 
           color={theme.secondary} 
-          className='mb-2'
+          
         />
         <Text 
           style={{color: theme.secondary}}
-          className='text-lg'
         >{t('hello_user')} Vinicius</Text>
       </View>
       
-      <View style={{ flex: 7 }} className='mx-4 justify-between'>
-        <View className='justify-between h-48 mt-6'>
+      <View style={{ flex: 7 }}>
+        <View>
           <DrawerButton title={"Login"} onPress={() => router.push('/login/indexLogin')}/>
           <DrawerButton title={t('register')} onPress={() => router.push('/register/indexRegister')}/>
           <DrawerButton 
@@ -72,7 +82,6 @@ export default function CustomDrawerContent() {
         </View>
         <Text 
           style={{color: theme.secondary}}
-          className='text-xs mb-2 text-center'
         >{t("rights_reserved")}</Text>
       </View>
     </View>

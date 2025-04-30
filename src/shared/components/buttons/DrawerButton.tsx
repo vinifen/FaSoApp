@@ -19,7 +19,6 @@ export default function DrawerButton({ title = "", onPress}: DefaulButtonType) {
     <TouchableOpacity 
       style={[styles.button]}
       onPress={onPress}
-      className='h-9 justify-center items-center'
     >
       <Text style={{color: theme.secondary}}>{title}</Text>
     </TouchableOpacity>
