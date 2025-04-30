@@ -19,13 +19,13 @@ export default function FormInput({
       borderColor: theme.border,
       color: theme.secondary,
       borderWidth: 1,
-      borderRadius: 10
+      borderRadius: 10,
+      textAlign: "center"
     },
   });
   
   return (
     <TextInput
-      className='text-center'
       style={[styles.input, customStyle]} 
       value={value}
       onChangeText={onChangeText}

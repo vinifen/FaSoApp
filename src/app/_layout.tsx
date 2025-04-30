@@ -2,7 +2,6 @@ import { Drawer } from 'expo-router/drawer';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { useColorScheme } from 'react-native';
 import Feather from '@expo/vector-icons/Feather';
-import "../../global.css";
 import '../shared/i18n';
 import ThemeProvider from '../shared/context/ThemeProvider';
 import { useTheme } from '../shared/hook/useTheme';
@@ -11,6 +10,7 @@ import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import CustomDrawerContent from '../shared/components/CustomDrawerContent';
 import { useRouter } from 'expo-router';
+import LogoImage from '../shared/components/LogoImage';
 
 export default function Layout() {
   return (
@@ -56,20 +56,8 @@ function Content() {
             onPress={() => router.push('')}
             style={{ flexDirection: 'row', alignItems: 'center' }}
           >
-            {currentlyTheme === 'light' ? (
-              <Image
-                source={require('../../assets/images/fasoapp-logo.png')}
-                resizeMode="contain"
-                className="w-9 h-9 mr-2"
-              />
-            ) : (
-              <Image
-                source={require('../../assets/images/fasoapp-logo-darktheme.png')}
-                resizeMode="contain"
-                className="w-9 h-9 mr-2"
-              />
-            )}
-            <Text style={{ color: theme.secondary }} className="font-bold text-xl">
+            <LogoImage />
+            <Text style={{ color: theme.secondary }}>
               FaSoApp
             </Text>
           </TouchableOpacity>
@@ -79,7 +67,7 @@ function Content() {
             name="menu"
             size={24}
             color={theme.secondary} 
-            className='mr-5'
+            style={{marginRight: 10}}
             onPress={openSidenav} 
           />
         ),

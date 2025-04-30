@@ -42,13 +42,13 @@ export default function Register() {
 
   return (
     <View style={{ backgroundColor: theme.background, flex: 1 }}>
-      <View className="h-2/6 justify-center items-center">
-        <Text style={{ color: theme.secondary }} className="text-3xl">
+      <View>
+        <Text style={{ color: theme.secondary }}>
           {t('welcome') + " " + t('register')}
         </Text>
       </View>
       
-      <View className="h-4/6 justify-between">
+      <View>
         <FormInput
           placeholder={t('email')}
           placeholderTextColor={theme.placeholder}
