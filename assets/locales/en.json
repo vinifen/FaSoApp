@@ -35,7 +35,8 @@
   "password_confirm": "Confirm password",
   "create_user": "Create User",
   "user_created_successfully": "User created successfully!",
-  "unexpected_error": "An unexpected error occurred."
-  
+  "unexpected_error": "An unexpected error occurred.",
+
+  "invalid_credentials": "Invalid credentials."
   
 }
