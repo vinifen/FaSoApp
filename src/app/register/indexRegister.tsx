@@ -1,95 +1,24 @@
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, View, Button, Text, TouchableOpacity } from "react-native";
-import Email from "../../shared/entities/Email";
-import Password from "../../shared/entities/Password";
-import Username from "../../shared/entities/Username";
+import { View } from "react-native";
 import { useTheme } from "../../shared/hook/useTheme";
-import UsersModel from "../../shared/model/UsersModel";
-import FormInput from "../../shared/components/inputs/FormInput";
-import { useRouter } from "expo-router";
+import RegisterForm from "./RegisterForm";
+import { H2 } from "../../shared/components/Titles";
+import Flex from "../../shared/components/Flex";
 
 
 export default function Register() {
-  const { theme, currentlyTheme } = useTheme();
-  const { t, i18n } = useTranslation();
-
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirm, setPasswordConfirm] = useState('');
-
-  const router = useRouter();
+  const { theme} = useTheme();
+  const { t } = useTranslation();
   
-  async function handleCreateUser() {
-    try {
-      const user = {
-        email: new Email(email),
-        username: new Username(username),
-        password: new Password(password),
-        passwordConfirm: new Password(password),
-        theme: currentlyTheme,
-        language: i18n.language
-      };
-      const userModel = new UsersModel();
-      await userModel.create(user);
-      
-      Alert.alert(t('user_created_successfully'));
-    } catch (error: any) {
-      Alert.alert(error.message || t('unexpected_error'));
-    }
-  }
-
   return (
-    <View style={{ backgroundColor: theme.background, flex: 1 }}>
-      <View>
-        <Text style={{ color: theme.secondary }}>
+    <View style={{ backgroundColor: theme.background, flex: 1, paddingHorizontal: 50 }}>
+      <Flex justify="center" align="center" flex={2}>
+        <H2 style={{ color: theme.secondary, textAlign: 'center' }}>
           {t('welcome') + " " + t('register')}
-        </Text>
-      </View>
+        </H2>
+      </Flex>
       
-      <View>
-        <FormInput
-          placeholder={t('email')}
-          placeholderTextColor={theme.placeholder}
-          
-          value={email}
-          onChangeText={setEmail}
-        />
-        
-        <FormInput
-          placeholder={t('username')}
-          placeholderTextColor={theme.placeholder}
-          
-          value={username}
-          onChangeText={setUsername}
-        />
-        
-        <FormInput
-          placeholder={t('password')}
-          placeholderTextColor={theme.placeholder}
-          secureTextEntry
-          
-          value={password}
-          onChangeText={setPassword}
-        />
-        
-        <FormInput
-          placeholder={t('password_confirm')}
-          placeholderTextColor={theme.placeholder}
-          secureTextEntry
-          
-          value={passwordConfirm}
-          onChangeText={setPasswordConfirm}
-        />
-
-        <TouchableOpacity onPress={()=> router.push('../login/indexLogin')}>
-          <Text>or Login</Text>
-        </TouchableOpacity>
-        
-        <Button title={t('create_user')} onPress={handleCreateUser} />
-      </View>
-      
+      <RegisterForm style={{flex: 8}}></RegisterForm>
     </View>
   );
 }

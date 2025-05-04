@@ -1,29 +1,24 @@
-// import { View, Text, TouchableOpacity,StyleSheet, GestureResponderEvent } from 'react-native'
-// import React from 'react'
-// import DefaulButtonType from '../../types/DefaultButtonType';
+import { Text, TouchableOpacity, StyleSheet } from 'react-native'
+import React from 'react'
+import DefaulButtonType from '../../types/DefaultButtonType'
+import { useTheme } from '../../hook/useTheme';
 
-// export default function SubmitButton({ title, onPress }: DefaulButtonType) {
-//   return (
-//     <TouchableOpacity style={styles.button} onPress={onPress}>
-//       <Text style={styles.buttonText}>{title}</Text>
-//     </TouchableOpacity>
-//   );
-// }
-// const styles = StyleSheet.create({
-//   button: {
-//     backgroundColor: '#4CAF50',
-//     paddingVertical: 12,
-//     paddingHorizontal: 32,
-//     borderRadius: 8,
-//     shadowColor: '#000',
-//     shadowOffset: { width: 0, height: 2 },
-//     shadowOpacity: 0.8,
-//     shadowRadius: 2,
-//   },
-//   buttonText: {
-//     color: '#fff', 
-//     fontSize: 16,
-//     fontWeight: 'bold',
-//     textAlign: 'center',
-//   },
-// });
+export default function SubmitButton({title, onPress, isDisabled = false}: DefaulButtonType ) {
+  const { theme} = useTheme();
+  const styles = StyleSheet.create({
+    button: {
+      backgroundColor: theme.button, 
+      borderColor: theme.secondary, 
+      borderWidth: 1,
+      borderRadius: 15,
+      height: 42,
+      justifyContent: "center",
+      alignItems: "center"
+    }
+  });
+  return (
+    <TouchableOpacity style={[styles.button]} onPress={onPress} disabled={isDisabled}>
+      <Text style={{color: theme.secondary}}>{title}</Text>
+    </TouchableOpacity>
+  )
+}

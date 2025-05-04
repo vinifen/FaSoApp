@@ -1,5 +1,5 @@
 import { Drawer } from 'expo-router/drawer';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { useColorScheme } from 'react-native';
 import Feather from '@expo/vector-icons/Feather';
 import '../shared/i18n';
@@ -8,9 +8,11 @@ import { useTheme } from '../shared/hook/useTheme';
 import { useEffect } from 'react';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import CustomDrawerContent from '../shared/components/CustomDrawerContent';
+import CustomDrawerContent from '../shared/components/custom-drawer/CustomDrawerContent';
 import { useRouter } from 'expo-router';
 import LogoImage from '../shared/components/LogoImage';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { H1 } from '../shared/components/Titles';
 
 export default function Layout() {
   return (
@@ -25,6 +27,7 @@ function Content() {
   const { theme, setTheme, currentlyTheme } = useTheme();
   const navigation = useNavigation();
   const router = useRouter();
+  const insets = useSafeAreaInsets();
   
   const openSidenav = () => {
     navigation.dispatch(DrawerActions.openDrawer());
@@ -46,7 +49,7 @@ function Content() {
         },
         headerStyle: {
           backgroundColor: theme.primary,
-          height: 80
+          height: 60 + insets.top
         },
         
         drawerInactiveTintColor: theme.secondary,
@@ -57,9 +60,9 @@ function Content() {
             style={{ flexDirection: 'row', alignItems: 'center' }}
           >
             <LogoImage />
-            <Text style={{ color: theme.secondary }}>
+            <H1 style={{ color: theme.secondary, marginLeft: 5 }}>
               FaSoApp
-            </Text>
+            </H1>
           </TouchableOpacity>
         ),
         headerRight: () => (
@@ -67,7 +70,7 @@ function Content() {
             name="menu"
             size={24}
             color={theme.secondary} 
-            style={{marginRight: 10}}
+            style={{marginRight: 20}}
             onPress={openSidenav} 
           />
         ),

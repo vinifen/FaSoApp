@@ -33,7 +33,9 @@
   "password_confirm": "Confirma senha",
   "create_user": "Criar usuário",
   "user_created_successfully": "Usuário criado com sucesso!",
-  "unexpected_error": "Ocorreu um erro inexperado."
+  "unexpected_error": "Ocorreu um erro inexperado.",
+
+  "invalid_credentials": "Credenciais inválidas."
   
   
 }

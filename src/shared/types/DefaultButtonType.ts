@@ -1,8 +1,9 @@
 import { GestureResponderEvent } from "react-native";
 
-type DefaulButtonType = {
+type DefaultButtonType = {
   title: string;
   onPress: (event: GestureResponderEvent) => void;
+  isDisabled?: boolean;
 };
 
-export default DefaulButtonType;
+export default DefaultButtonType;

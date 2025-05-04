@@ -5,7 +5,7 @@ import Password from "../entities/Password";
 export type UserEntityType = {
   id?: number;
   email: Email;
-  username: Username;
+  username?: Username;
   password?: Password;
   passwordConfirm?: Password;
   theme?: string;
