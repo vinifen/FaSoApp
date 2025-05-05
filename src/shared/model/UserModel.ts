@@ -1,20 +1,17 @@
-import userToPayload from "shared/mapper/userToPayload";
 import i18n from "../i18n";
 import api from "../utils/api";
-import Email from "shared/entities/Email";
-import Password from "shared/entities/Password";
+import { RegisterUserType, LoginType } from "shared/types/UserTypes";
 
-export default class UsersModel {
+
+export default class UserModel {
   readonly uri = "/api/collections/users/records";
   readonly authUri = "/api/collections/users/auth-with-password";
 
   constructor() {}
 
-  async create(userData: any) {
+  async create(userData: RegisterUserType) {
     try {
-      const payload = userToPayload(userData);
-      console.log(payload);
-      const createUser = await api.post(this.uri, payload);
+      const createUser = await api.post(this.uri, userData);
       return createUser;
     } catch (error: any) {
       console.error(error);
@@ -22,11 +19,11 @@ export default class UsersModel {
     }
   }
 
-  async login(email: Email, password: Password) {
+  async login(userData: LoginType) {
     try {
       const response = await api.post(this.authUri, {
-        identity: email.value,
-        password: password.value,
+        identity: userData.email,
+        password: userData.password,
       });
       console.log(response);
       return response; 

@@ -18,7 +18,7 @@
   "rights_reserved": "Todos os direitos reservados ViniciusFn",
   
   "email_error_amount": "Email deve ser menor que 100 caracteres.",
-  "email_error_format": "Formato invalido de email.",
+  "email_error_format": "Formato inválidoasdf de email.",
   
   "username_error_amount": "O nome de usuário deve ter no máximo 60 caracteres.",
   "username_error_invalid_characters": "O nome de usuário só pode conter letras, números, underscores, hifens e pontos.",
@@ -26,6 +26,8 @@
   "password_error_min_length": "A senha deve ter pelo menos 6 caracteres.",
   "password_error_max_length": "A senha não pode ter mais de 71 caracteres.",
   
+  "password_error_mismatch": "A senha e a confirmação de senha não coincidem.",
+  "or": "ou",
   "welcome": "Bem-vindo!",
   "email": "Email",
   "username": "Nome de usuário",
@@ -33,9 +35,7 @@
   "password_confirm": "Confirma senha",
   "create_user": "Criar usuário",
   "user_created_successfully": "Usuário criado com sucesso!",
-  "unexpected_error": "Ocorreu um erro inexperado.",
-
-  "invalid_credentials": "Credenciais inválidas."
-  
-  
+  "unexpected_error": "Ocorreu um erro inesperado.",
+  "invalid_credentials": "Credenciais inválidas.",
+  "confirm_password": "Confirmar senha"
 }

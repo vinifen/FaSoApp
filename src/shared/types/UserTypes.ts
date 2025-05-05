@@ -1,30 +1,21 @@
-import Email from "../entities/Email";
-import Username from "../entities/Username";
-import Password from "../entities/Password";
+import { z } from 'zod';
+import { loginSchema, registerUserSchema } from 'shared/schemas/UserSchemas';
 
-export type UserEntityType = {
-  id?: number;
-  email: Email;
-  username?: Username;
-  password?: Password;
-  passwordConfirm?: Password;
-  theme?: string;
-  language?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-};
+export type LoginType = z.infer<typeof loginSchema>;
 
-export type UserApiType = {
-  id?: number;
-  email: string;
-  username: string;
-  password?: string;
-  theme?: string;
-  language?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-};
 
+export type RegisterUserType = z.infer<typeof registerUserSchema>
+
+// export type UserApiType = {
+//   id?: number;
+//   email: string;
+//   username: string;
+//   password?: string;
+//   theme?: string;
+//   language?: string;
+//   createdAt?: Date;
+//   updatedAt?: Date;
+// };
 
 
 
