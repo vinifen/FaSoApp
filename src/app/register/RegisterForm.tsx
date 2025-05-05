@@ -1,17 +1,18 @@
 import { Text, TouchableOpacity, Alert, StyleProp, ViewStyle } from 'react-native'
 import React, { useState } from 'react'
-import FormInput from '../../shared/components/inputs/FormInput'
+import FormInput from '../../shared/components/FormInput'
 import { useTheme } from '../../shared/hook/useTheme';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import Email from '../../shared/entities/Email';
-import Password from '../../shared/entities/Password';
-import Username from '../../shared/entities/Username';
-import UsersModel from '../../shared/model/UsersModel';
+import UsersModel from '../../shared/model/UserModel';
 import Flex from '../../shared/components/Flex';
 import SubmitButton from '../../shared/components/buttons/SubmitButton';
 import RememberMe from 'shared/components/RememberMe';
-
+import {Controller, useForm } from 'react-hook-form';
+import { RegisterUserType } from 'shared/types/UserTypes';
+import { zodResolver } from '@hookform/resolvers/zod';
+import validationStyles from 'shared/styles/validationStyles';
+import { registerUserSchema } from 'shared/schemas/UserSchemas';
 export default function RegisterForm({ style }: {style?: StyleProp<ViewStyle>}) {
   const { theme, currentlyTheme } = useTheme();
   const { t, i18n } = useTranslation();
@@ -21,77 +22,147 @@ export default function RegisterForm({ style }: {style?: StyleProp<ViewStyle>}) 
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [rememberMe, setRememberMe] = useState(true);
+  const [error, setError] = useState('');
 
   const router = useRouter();
   
-  async function handleCreateUser() {
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterUserType>({
+      resolver: zodResolver(registerUserSchema),
+    });
+  
+  async function handleCreateUser(data: RegisterUserType) {
     try {
-      const user = {
-        email: new Email(email),
-        username: new Username(username),
-        password: new Password(password),
-        passwordConfirm: new Password(passwordConfirm),
-        theme: currentlyTheme,
-        language: i18n.language
-      };
       const userModel = new UsersModel();
-      await userModel.create(user);
-      
-      Alert.alert(t('user_created_successfully'));
+      console.log('data', data);
+      const result = await userModel.create(data);
+      // if (rememberMe) {
+      //   await AsyncStorage.setItem('user', JSON.stringify(userData));
+      // }
+      console.log('result', result);
+      // router.push('');
     } catch (error: any) {
-      Alert.alert(error.message || t('unexpected_error'));
+      console.error(error);
+      if (error.response) {
+        setError(error.response.data.message);
+      } else {
+        setError(t('unexpected_error'));
+      }
     }
   }
   
   return (
-    <Flex gap={20} style={style}>
-        <FormInput
-        
-          key={`email-${i18n.language}-${currentlyTheme}`}
-          placeholder={t('email')}
-          value={email}
-          onChangeText={setEmail}
-        />
-        
-        <FormInput
-          key={`username-${i18n.language}-${currentlyTheme}`}
-          placeholder={t('username')}
-          value={username}
-          onChangeText={setUsername}
-        />
-        
-        <FormInput
-          key={`password-${i18n.language}-${currentlyTheme}`}
-          placeholder={t('password')}
-          secureTextEntry={true}
-          value={password}
-          onChangeText={setPassword}
-        />
-        
-        <FormInput
-          key={`password_confirm-${i18n.language}-${currentlyTheme}`}
-          placeholder={t('password_confirm')}
-          secureTextEntry={true}
-          value={passwordConfirm}
-          onChangeText={setPasswordConfirm}
-        />
+    <Flex gap={20} style={style}> 
+      <Controller
+        control={control}
+        name="username"
+        render={({ field: { onChange, onBlur, value } }) => (
+          <FormInput
+            key={`username-${i18n.language}-${currentlyTheme}`}
+            placeholder={t('username')}
+            value={value}
+            onBlur={onBlur}
+            onChangeText={onChange}
+          />
+        )}
+      />
 
-        <RememberMe style={{justifyContent: "center"}} value={rememberMe} onValueChange={setRememberMe} />
-        
-        <SubmitButton
-          title={t('create_user')}
-          onPress={handleCreateUser}
-        />
-        
-        <TouchableOpacity
-          onPress={() => router.push('../login/indexLogin')}
-          style={{ alignSelf: 'center' }}
-        >
-          <Text style={{ color: theme.secondary, textAlign: 'center' }}>
-            or <Text style={{ textDecorationLine: 'underline' }}>Login</Text>
+      {errors.username && (
+        <Text key={i18n.language} style={validationStyles.error}>{errors.username.message}</Text>
+      )}
+
+      <Controller
+        control={control}
+        name="email"
+        render={({ field: { onChange, onBlur, value } }) => (
+          <FormInput
+            key={`email-${i18n.language}-${currentlyTheme}`}
+            placeholder={t('email')}
+            value={value}
+            onBlur={onBlur}
+            onChangeText={onChange}
+          />
+        )}
+      />
+
+      {errors.email && (
+        <Text key={i18n.language} style={validationStyles.error}>{errors.email.message}</Text>
+      )}
+
+      <Controller
+        control={control}
+        name="password"
+        render={({ field: { onChange, onBlur, value } }) => (
+          <FormInput
+            key={`password-${i18n.language}-${currentlyTheme}`}
+            placeholder={t('password')}
+            secureTextEntry
+            onBlur={onBlur}
+            value={value}
+            onChangeText={onChange}
+          />
+        )}
+      />
+
+      {errors.password && (
+        <Text key={i18n.language} style={validationStyles.error}>{errors.password.message}</Text>
+      )}
+
+      <Controller
+        control={control}
+        name="passwordConfirm"
+        render={({ field: { onChange, onBlur, value } }) => (
+          <FormInput
+            key={`password_password-${i18n.language}-${currentlyTheme}`}
+            placeholder={t('confirm_password')}
+            secureTextEntry
+            onBlur={onBlur}
+            value={value}
+            onChangeText={onChange}
+          />
+        )}
+      />
+
+      {errors.passwordConfirm && (
+        <Text key={i18n.language} style={validationStyles.error}>{errors.passwordConfirm.message}</Text>
+      )}
+      {error != '' && (
+        <Text key={i18n.language} style={validationStyles.error}>{error}</Text>
+      )}
+
+      <RememberMe
+        style={{ justifyContent: 'center' }}
+        value={rememberMe}
+        onValueChange={setRememberMe}
+      />
+
+      <SubmitButton
+        title={t('register')}
+        onPress={handleSubmit((data) => handleCreateUser({
+          email: data.email,
+          username: data.username,
+          password: data.password,
+          passwordConfirm: data.passwordConfirm,
+          theme: currentlyTheme, 
+          language: i18n.language, 
+        }))}
+      />
+
+      <TouchableOpacity
+        onPress={() => router.push('../register/indexRegister')}
+        style={{ alignSelf: 'center' }}
+      >
+        <Text style={{ color: theme.secondary, textAlign: 'center' }}>
+          {t('or') + ' '}
+          <Text style={{ textDecorationLine: 'underline' }}>
+            {t('login')}
           </Text>
-        </TouchableOpacity>
-        
-      </Flex>
-  )
+        </Text>
+      </TouchableOpacity>
+    </Flex>
+  );
 }

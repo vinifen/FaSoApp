@@ -27,7 +27,8 @@
   "password_error_min_length": "Password must be at least 6 characters long.",
   "password_error_max_length": "Password cannot be longer than 71 characters.",
   
-  
+  "password_error_mismatch": "Password and confirm password do not match.",
+  "or": "or",
   "welcome": "Welcome!",
   "email": "Email",
   "username": "Username",
@@ -36,7 +37,6 @@
   "create_user": "Create User",
   "user_created_successfully": "User created successfully!",
   "unexpected_error": "An unexpected error occurred.",
-
-  "invalid_credentials": "Invalid credentials."
-  
+  "invalid_credentials": "Invalid credentials.",
+  "confirm_password": "Confirm password"
 }
