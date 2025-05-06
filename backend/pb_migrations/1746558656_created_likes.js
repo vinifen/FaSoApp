@@ -19,6 +19,34 @@ migrate((app) => {
         "type": "text"
       },
       {
+        "autogeneratePattern": "",
+        "hidden": false,
+        "id": "text2809058197",
+        "max": 0,
+        "min": 0,
+        "name": "user_id",
+        "pattern": "",
+        "presentable": false,
+        "primaryKey": false,
+        "required": true,
+        "system": false,
+        "type": "text"
+      },
+      {
+        "autogeneratePattern": "",
+        "hidden": false,
+        "id": "text1267270444",
+        "max": 0,
+        "min": 0,
+        "name": "post_id",
+        "pattern": "",
+        "presentable": false,
+        "primaryKey": false,
+        "required": true,
+        "system": false,
+        "type": "text"
+      },
+      {
         "hidden": false,
         "id": "autodate2990389176",
         "name": "created",
@@ -39,10 +67,10 @@ migrate((app) => {
         "type": "autodate"
       }
     ],
-    "id": "pbc_1125843985",
+    "id": "pbc_2190274710",
     "indexes": [],
     "listRule": null,
-    "name": "posts",
+    "name": "likes",
     "system": false,
     "type": "base",
     "updateRule": null,
@@ -51,7 +79,7 @@ migrate((app) => {
 
   return app.save(collection);
 }, (app) => {
-  const collection = app.findCollectionByNameOrId("pbc_1125843985");
+  const collection = app.findCollectionByNameOrId("pbc_2190274710");
 
   return app.delete(collection);
 })

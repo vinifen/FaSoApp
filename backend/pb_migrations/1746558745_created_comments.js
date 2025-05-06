@@ -1,9 +1,5 @@
 /// <reference path="../pb_data/types.d.ts" />
 migrate((app) => {
-  const collection = app.findCollectionByNameOrId("pbc_1125843985");
-
-  return app.delete(collection);
-}, (app) => {
   const collection = new Collection({
     "createRule": null,
     "deleteRule": null,
@@ -23,12 +19,40 @@ migrate((app) => {
         "type": "text"
       },
       {
+        "autogeneratePattern": "",
+        "hidden": false,
+        "id": "text2809058197",
+        "max": 0,
+        "min": 0,
+        "name": "user_id",
+        "pattern": "",
+        "presentable": false,
+        "primaryKey": false,
+        "required": false,
+        "system": false,
+        "type": "text"
+      },
+      {
+        "autogeneratePattern": "",
+        "hidden": false,
+        "id": "text1267270444",
+        "max": 0,
+        "min": 0,
+        "name": "post_id",
+        "pattern": "",
+        "presentable": false,
+        "primaryKey": false,
+        "required": false,
+        "system": false,
+        "type": "text"
+      },
+      {
         "hidden": false,
         "id": "autodate2990389176",
         "name": "created",
         "onCreate": true,
         "onUpdate": false,
-        "presentable": true,
+        "presentable": false,
         "system": false,
         "type": "autodate"
       },
@@ -43,10 +67,10 @@ migrate((app) => {
         "type": "autodate"
       }
     ],
-    "id": "pbc_1125843985",
+    "id": "pbc_533777971",
     "indexes": [],
     "listRule": null,
-    "name": "posts",
+    "name": "comments",
     "system": false,
     "type": "base",
     "updateRule": null,
@@ -54,4 +78,8 @@ migrate((app) => {
   });
 
   return app.save(collection);
+}, (app) => {
+  const collection = app.findCollectionByNameOrId("pbc_533777971");
+
+  return app.delete(collection);
 })

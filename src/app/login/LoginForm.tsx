@@ -40,12 +40,12 @@ export default function LoginForm({ style }: { style?: StyleProp<ViewStyle> }) {
   async function handleLogin(data: LoginType) {
     try {
       const userModel = new UsersModel();
-      await userModel.login(data);
+      const result = await userModel.login(data);
       // if (rememberMe) {
       //   await AsyncStorage.setItem('user', JSON.stringify(userData));
       // }
-
-      router.push('../home/indexHome');
+      console.log('result', result.data.token);
+      router.push('');
     } catch (error: any) {
       console.error(error);
       if (error.response) {

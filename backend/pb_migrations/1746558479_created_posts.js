@@ -21,20 +21,6 @@ migrate((app) => {
       {
         "autogeneratePattern": "",
         "hidden": false,
-        "id": "text724990059",
-        "max": 0,
-        "min": 0,
-        "name": "title",
-        "pattern": "",
-        "presentable": false,
-        "primaryKey": false,
-        "required": true,
-        "system": false,
-        "type": "text"
-      },
-      {
-        "autogeneratePattern": "",
-        "hidden": false,
         "id": "text1843675174",
         "max": 0,
         "min": 0,
@@ -59,6 +45,20 @@ migrate((app) => {
         "system": false,
         "thumbs": [],
         "type": "file"
+      },
+      {
+        "autogeneratePattern": "",
+        "hidden": false,
+        "id": "text724990059",
+        "max": 0,
+        "min": 0,
+        "name": "title",
+        "pattern": "",
+        "presentable": false,
+        "primaryKey": false,
+        "required": false,
+        "system": false,
+        "type": "text"
       },
       {
         "autogeneratePattern": "",
@@ -95,10 +95,10 @@ migrate((app) => {
         "type": "autodate"
       }
     ],
-    "id": "pbc_2106002237",
+    "id": "pbc_1125843985",
     "indexes": [],
     "listRule": null,
-    "name": "post",
+    "name": "posts",
     "system": false,
     "type": "base",
     "updateRule": null,
@@ -107,7 +107,7 @@ migrate((app) => {
 
   return app.save(collection);
 }, (app) => {
-  const collection = app.findCollectionByNameOrId("pbc_2106002237");
+  const collection = app.findCollectionByNameOrId("pbc_1125843985");
 
   return app.delete(collection);
 })
