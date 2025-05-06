@@ -17,10 +17,6 @@ export default function RegisterForm({ style }: {style?: StyleProp<ViewStyle>}) 
   const { theme, currentlyTheme } = useTheme();
   const { t, i18n } = useTranslation();
 
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirm, setPasswordConfirm] = useState('');
   const [rememberMe, setRememberMe] = useState(true);
   const [error, setError] = useState('');
 
@@ -153,7 +149,7 @@ export default function RegisterForm({ style }: {style?: StyleProp<ViewStyle>}) 
       />
 
       <TouchableOpacity
-        onPress={() => router.push('../register/indexRegister')}
+        onPress={() => router.push('../login/indexLogin')}
         style={{ alignSelf: 'center' }}
       >
         <Text style={{ color: theme.secondary, textAlign: 'center' }}>

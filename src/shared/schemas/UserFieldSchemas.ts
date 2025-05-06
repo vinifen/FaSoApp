@@ -27,10 +27,9 @@ export const passwordConfirmSchema = z
     message: i18n.t('password_error_mismatch'),
     path: ['passwordConfirm'],
   });
+export const avatarSchema = z
+  .string().optional();
 
-export const themeSchema = z.string().optional().default('light');
-export const languageSchema = z.string().optional().default('en');
-export const rememberMeSchema = z.boolean().optional().default(true);
-export const createdAtSchema = z.date().optional().default(new Date());
-export const updatedAtSchema = z.date().optional().default(new Date());
+export const themeSchema = z.string().optional();
+export const languageSchema = z.string().optional();
 export const idSchema = z.number().optional();

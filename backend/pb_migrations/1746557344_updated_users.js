@@ -2,6 +2,13 @@
 migrate((app) => {
   const collection = app.findCollectionByNameOrId("_pb_users_auth_")
 
+  // update collection data
+  unmarshal({
+    "authToken": {
+      "duration": 94670856
+    }
+  }, collection)
+
   // add field
   collection.fields.addAt(8, new Field({
     "autogeneratePattern": "",
@@ -37,6 +44,13 @@ migrate((app) => {
   return app.save(collection)
 }, (app) => {
   const collection = app.findCollectionByNameOrId("_pb_users_auth_")
+
+  // update collection data
+  unmarshal({
+    "authToken": {
+      "duration": 604800
+    }
+  }, collection)
 
   // remove field
   collection.fields.removeById("text2541086472")
