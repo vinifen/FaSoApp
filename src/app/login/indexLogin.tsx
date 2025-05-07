@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
-import { useTheme } from "../../shared/hook/useTheme";
+import useTheme from "../../shared/hooks/useTheme";
 import LoginForm from "./LoginForm";
 import { H2 } from "../../shared/components/Titles";
 import Flex from "../../shared/components/Flex";

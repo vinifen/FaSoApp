@@ -1,7 +1,7 @@
 import { Text, TouchableOpacity, StyleSheet } from 'react-native'
 import React from 'react'
 import DefaulButtonType from '../../types/DefaultButtonType'
-import { useTheme } from '../../hook/useTheme'
+import useTheme  from '../../hooks/useTheme'
 
 export default function DrawerButton({ title = "", onPress}: DefaulButtonType) {
   const { theme} = useTheme();

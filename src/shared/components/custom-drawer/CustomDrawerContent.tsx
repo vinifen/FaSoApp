@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import { useTheme } from '../../hook/useTheme'
+import useTheme from '../../hooks/useTheme'
 import Feather from '@expo/vector-icons/Feather'
 import { useNavigation, DrawerActions } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'

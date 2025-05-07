@@ -1,4 +1,4 @@
-import ThemeType from '../types/ThemeType'
+import ThemeType from '../types/ThemeTypes'
 
 export const dark = {
   primary: '#2D3033',

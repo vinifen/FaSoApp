@@ -1,18 +1,19 @@
 import { Text, TouchableOpacity, Alert, StyleProp, ViewStyle } from 'react-native'
 import React, { useState } from 'react'
 import FormInput from '../../shared/components/FormInput'
-import { useTheme } from '../../shared/hook/useTheme';
+import useTheme  from '../../shared/hooks/useTheme';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import UsersModel from '../../shared/model/UserModel';
+import UsersModel from '../../shared/model/userModel';
 import Flex from '../../shared/components/Flex';
 import SubmitButton from '../../shared/components/buttons/SubmitButton';
 import RememberMe from 'shared/components/RememberMe';
 import {Controller, useForm } from 'react-hook-form';
-import { RegisterUserType } from 'shared/types/UserTypes';
+import { LoginType, RegisterUserType } from 'shared/types/UserTypes';
 import { zodResolver } from '@hookform/resolvers/zod';
 import validationStyles from 'shared/styles/validationStyles';
 import { registerUserSchema } from 'shared/schemas/UserSchemas';
+import { useAuth } from 'shared/hooks/useAuth';
 export default function RegisterForm({ style }: {style?: StyleProp<ViewStyle>}) {
   const { theme, currentlyTheme } = useTheme();
   const { t, i18n } = useTranslation();
@@ -21,6 +22,7 @@ export default function RegisterForm({ style }: {style?: StyleProp<ViewStyle>}) 
   const [error, setError] = useState('');
 
   const router = useRouter();
+  const {registerUser, loginUser} = useAuth();
   
 
   const {
@@ -33,14 +35,11 @@ export default function RegisterForm({ style }: {style?: StyleProp<ViewStyle>}) 
   
   async function handleCreateUser(data: RegisterUserType) {
     try {
-      const userModel = new UsersModel();
       console.log('data', data);
-      const result = await userModel.create(data);
-      // if (rememberMe) {
-      //   await AsyncStorage.setItem('user', JSON.stringify(userData));
-      // }
-      console.log('result', result);
-      // router.push('');
+      const resultResgiter = await registerUser(data);
+      const loginData: LoginType = {email: data.email, password: data.password}
+      const resultLogin = await loginUser(loginData, rememberMe);
+      router.push('');
     } catch (error: any) {
       console.error(error);
       if (error.response) {

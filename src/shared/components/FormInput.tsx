@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 import DefaultInputType from 'shared/types/DefaultInputType';
-import { useTheme } from 'shared/hook/useTheme';
+import useTheme from 'shared/hooks/useTheme';
 
 export default function FormInput({
   value,

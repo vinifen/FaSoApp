@@ -5,45 +5,62 @@ import { t } from 'i18next'
 import i18n from '../../i18n'
 import DrawerButton from '../buttons/DrawerButton'
 import { useRouter } from 'expo-router'
-import { useTheme } from 'shared/hook/useTheme'
+import useTheme from 'shared/hooks/useTheme'
 import { useSegments } from 'expo-router';
+import useUserStore from 'shared/store/userStore'
+import { useAuth } from 'shared/hooks/useAuth'
+
+
 export default function ButtonsContainerDrawer({ style }: {style?: StyleProp<ViewStyle>}) {
   const { setTheme, currentlyTheme } = useTheme();
   const router = useRouter()
   const segments = useSegments();
+  const { user } = useUserStore();
+  const { logoutUser } = useAuth();
   
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'))
+    setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
   }
   
   const toggleLocale = () => {
-    const newLocale = i18n.language === 'en' ? 'pt' : 'en'
-    i18n.changeLanguage(newLocale)
+    const newLocale = i18n.language === 'en' ? 'pt' : 'en';
+    i18n.changeLanguage(newLocale);
   }
-  
   
   return (
     <Flex gap={20} style={style}>
-    {segments[0] != null && (
-      <DrawerButton
-        title={'Home'}
-        onPress={() => router.push('/')}
-      />
-    )}
-      <DrawerButton
-        title={'Login'}
-        onPress={() => router.push('/login/indexLogin')}
-      />
-      <DrawerButton
-        title={t('register')}
-        onPress={() => router.push('/register/indexRegister')}
-      />
+      {segments[0] != null && (
+        <DrawerButton
+          title={'Home'}
+          onPress={() => router.push('/')}
+        />
+      )}
+      
+      {!user ? (
+        <>
+          <DrawerButton
+            title={'Login'}
+            onPress={() => router.push('/login/indexLogin')}
+          />
+          <DrawerButton
+            title={t('register')}
+            onPress={() => router.push('/register/indexRegister')}
+          />
+        </>
+      ) : (
+        <DrawerButton
+          title={'My Profile'}
+          onPress={() => router.push(`/user/[${user.id}]`)}
+        />
+      )}
+      
       <DrawerButton
         title={
           currentlyTheme === 'light' ? t('light_theme') : t('dark_theme')
         }
         onPress={toggleTheme}
       />
+      
       <DrawerButton
         title={
           t('language') +
@@ -51,6 +68,14 @@ export default function ButtonsContainerDrawer({ style }: {style?: StyleProp<Vie
         }
         onPress={toggleLocale}
       />
+      
+      {user && (
+        <DrawerButton
+          title={'Logout'}
+          onPress={logoutUser}
+        />
+      )}
     </Flex>
-  )
+  );
 }
+
