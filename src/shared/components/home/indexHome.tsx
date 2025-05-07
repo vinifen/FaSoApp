@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native';
 import React from 'react';
-import { useTheme } from '../../hook/useTheme';
+import useTheme from '../../hooks/useTheme';
 
 
 export default function Home() {

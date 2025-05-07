@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, StyleSheet, Pressable, StyleProp, ViewStyle} from 'react-native';
 import Checkbox from 'expo-checkbox';
 
-import { useTheme } from 'shared/hook/useTheme';
+import useTheme from 'shared/hooks/useTheme';
 
 type RememberMeProps = {
   value: boolean;

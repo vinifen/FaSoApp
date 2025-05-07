@@ -3,7 +3,7 @@
   "change_theme": "Change theme",
   "change_locale": "Change language",
   "hello_user": "Hello",
-
+  "hello_user_login": "Hello, login",
   "register": "Register",
   "login": "Login",
   

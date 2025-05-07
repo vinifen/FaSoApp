@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React, { useState } from 'react';
 import FormInput from '../../shared/components/FormInput';
-import { useTheme } from '../../shared/hook/useTheme';
+import useTheme  from '../../shared/hooks/useTheme';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import Flex from '../../shared/components/Flex';
@@ -16,11 +16,10 @@ import SubmitButton from '../../shared/components/buttons/SubmitButton';
 import RememberMe from 'shared/components/RememberMe';
 import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { LoginType } from 'shared/types/UserTypes';
-import UsersModel from 'shared/model/UserModel';
 import { loginSchema } from 'shared/schemas/UserSchemas';
 import validationStyles from 'shared/styles/validationStyles';
+import { useAuth } from 'shared/hooks/useAuth';
 
 export default function LoginForm({ style }: { style?: StyleProp<ViewStyle> }) {
   const { theme, currentlyTheme } = useTheme();
@@ -28,6 +27,7 @@ export default function LoginForm({ style }: { style?: StyleProp<ViewStyle> }) {
   const router = useRouter();
   const [rememberMe, setRememberMe] = useState(true);
   const [error, setError] = useState('');
+  const {loginUser} = useAuth();
 
   const { 
     control,
@@ -39,12 +39,8 @@ export default function LoginForm({ style }: { style?: StyleProp<ViewStyle> }) {
 
   async function handleLogin(data: LoginType) {
     try {
-      const userModel = new UsersModel();
-      const result = await userModel.login(data);
-      // if (rememberMe) {
-      //   await AsyncStorage.setItem('user', JSON.stringify(userData));
-      // }
-      console.log('result', result.data.token);
+      const result = await loginUser(data, rememberMe);
+      console.log("result : " ,result);
       router.push('');
     } catch (error: any) {
       console.error(error);

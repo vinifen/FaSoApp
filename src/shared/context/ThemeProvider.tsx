@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import ThemeContext from './ThemeContext'
 import themes from '../styles/themes';
-import ThemeType from '../types/ThemeType';
+import {ThemeType} from '../types/ThemeTypes';
 
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [themeName, setThemeName] = useState<string>("light");

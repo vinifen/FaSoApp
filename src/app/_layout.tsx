@@ -4,7 +4,7 @@ import { useColorScheme } from 'react-native';
 import Feather from '@expo/vector-icons/Feather';
 import '../shared/i18n';
 import ThemeProvider from '../shared/context/ThemeProvider';
-import { useTheme } from '../shared/hook/useTheme';
+import useTheme from '../shared/hooks/useTheme';
 import { useEffect } from 'react';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
@@ -13,6 +13,10 @@ import { useRouter } from 'expo-router';
 import LogoImage from '../shared/components/LogoImage';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { H1 } from '../shared/components/Titles';
+import { useAuth } from 'shared/hooks/useAuth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import userModel from 'shared/model/userModel';
+import useUserStore from 'shared/store/userStore';
 
 export default function Layout() {
   return (
@@ -28,6 +32,10 @@ function Content() {
   const navigation = useNavigation();
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const {checkUserAuth} = useAuth();
+  const {setUser} = useUserStore();
+  
+
   
   const openSidenav = () => {
     navigation.dispatch(DrawerActions.openDrawer());
@@ -37,6 +45,17 @@ function Content() {
       setTheme(deviceTheme);
     }
   }, [deviceTheme]);
+
+  useEffect(() => {
+    const verifySession = async () => {
+      console.log("verifying session");
+      const token = await AsyncStorage.getItem('auth_token')
+      console.log("token : ", token);
+      if(token) checkUserAuth(token);
+    };
+
+    verifySession();
+  }, []);
   
   return (
     <>

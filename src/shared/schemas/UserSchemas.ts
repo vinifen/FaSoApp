@@ -1,4 +1,3 @@
-// UserSchemas.ts
 import { z } from 'zod';
 import {
   emailSchema,
@@ -31,3 +30,5 @@ export const loginSchema = z.object({
   email: emailSchema,
   password: passwordSchema,
 });
+
+

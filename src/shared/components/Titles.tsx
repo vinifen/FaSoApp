@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, TextProps } from 'react-native'
-import { useTheme } from '../hook/useTheme'
+import useTheme from '../hooks/useTheme'
 
 export function H1(props: TextProps) {
   const { theme } = useTheme()

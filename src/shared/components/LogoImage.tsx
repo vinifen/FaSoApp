@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, View, StyleSheet } from 'react-native';
-import { useTheme } from '../hook/useTheme';
+import useTheme from '../hooks/useTheme';
 
 
 export default function LogoImage({ width = 30}: {width?: number}) {
