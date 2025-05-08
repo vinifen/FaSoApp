@@ -2,8 +2,8 @@ import { Drawer } from 'expo-router/drawer';
 import { TouchableOpacity } from 'react-native';
 import { useColorScheme } from 'react-native';
 import Feather from '@expo/vector-icons/Feather';
-import '../shared/i18n';
-import ThemeProvider from '../shared/context/ThemeProvider';
+import 'shared/i18n';
+import ThemeProvider from 'shared/context/ThemeProvider';
 import useTheme from '../shared/hooks/useTheme';
 import { useEffect } from 'react';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
@@ -13,10 +13,8 @@ import { useRouter } from 'expo-router';
 import LogoImage from '../shared/components/LogoImage';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { H1 } from '../shared/components/Titles';
-import { useAuth } from 'shared/hooks/useAuth';
+import useUser from 'shared/hooks/useUser';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import userModel from 'shared/model/userModel';
-import useUserStore from 'shared/store/userStore';
 
 export default function Layout() {
   return (
@@ -32,28 +30,31 @@ function Content() {
   const navigation = useNavigation();
   const router = useRouter();
   const insets = useSafeAreaInsets();
-  const {checkUserAuth} = useAuth();
-  const {setUser} = useUserStore();
+  const {checkUserAuth} = useUser();
   
-
+  
   
   const openSidenav = () => {
     navigation.dispatch(DrawerActions.openDrawer());
   };
-    useEffect(() => {
-    if (deviceTheme && deviceTheme !== currentlyTheme) {
+  
+  useEffect(() => {
+  const fetchTokenAndSetTheme = async () => {
+    const token = await AsyncStorage.getItem('auth_token');
+    if (deviceTheme && deviceTheme !== currentlyTheme && !token) {
       setTheme(deviceTheme);
     }
+  };
+  
+  fetchTokenAndSetTheme();
   }, [deviceTheme]);
-
+  
   useEffect(() => {
     const verifySession = async () => {
-      console.log("verifying session");
       const token = await AsyncStorage.getItem('auth_token')
-      console.log("token : ", token);
       if(token) checkUserAuth(token);
     };
-
+    
     verifySession();
   }, []);
   

@@ -12,7 +12,7 @@ export default function FormInput({
   ...props
 }: DefaultInputType) {
   const { theme } = useTheme();
-
+  
   const styles = StyleSheet.create({
     input: {
       backgroundColor: theme.input,
@@ -24,7 +24,7 @@ export default function FormInput({
       height: 38,
     },
   });
-
+  
   return (
     <TextInput
       style={[styles.input, customStyle]}

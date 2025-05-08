@@ -25,7 +25,7 @@ export const registerUserSchema = z
     message: i18n.t('password_error_mismatch'),
     path: ['passwordConfirm'],
   });
-
+  
 export const loginSchema = z.object({
   email: emailSchema,
   password: passwordSchema,

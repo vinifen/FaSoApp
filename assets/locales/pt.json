@@ -37,5 +37,6 @@
   "user_created_successfully": "Usuário criado com sucesso!",
   "unexpected_error": "Ocorreu um erro inesperado.",
   "invalid_credentials": "Credenciais inválidas.",
-  "confirm_password": "Confirmar senha"
+  "confirm_password": "Confirmar senha",
+  "my_profile": "Meu perfil"
 }
