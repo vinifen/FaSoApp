@@ -19,7 +19,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { LoginType } from 'shared/types/UserTypes';
 import { loginSchema } from 'shared/schemas/UserSchemas';
 import validationStyles from 'shared/styles/validationStyles';
-import { useAuth } from 'shared/hooks/useAuth';
+import useUser from 'shared/hooks/useUser';
 
 export default function LoginForm({ style }: { style?: StyleProp<ViewStyle> }) {
   const { theme, currentlyTheme } = useTheme();
@@ -27,7 +27,7 @@ export default function LoginForm({ style }: { style?: StyleProp<ViewStyle> }) {
   const router = useRouter();
   const [rememberMe, setRememberMe] = useState(true);
   const [error, setError] = useState('');
-  const {loginUser} = useAuth();
+  const {loginUser} = useUser();
 
   const { 
     control,

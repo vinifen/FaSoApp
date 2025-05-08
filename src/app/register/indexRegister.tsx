@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
-import useTheme from "../../shared/hooks/useTheme";
+import useTheme from "shared/hooks/useTheme";
 import RegisterForm from "./RegisterForm";
-import { H2 } from "../../shared/components/Titles";
-import Flex from "../../shared/components/Flex";
+import { H2 } from "shared/components/Titles";
+import Flex from "shared/components/Flex";
 
 
 export default function Register() {

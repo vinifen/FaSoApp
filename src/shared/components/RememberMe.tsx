@@ -18,7 +18,7 @@ export default function RememberMe({
   style
 }: RememberMeProps) {
   const { theme } = useTheme();
-
+  
   return (
     <Pressable
       style={[style, styles.container]}
@@ -27,7 +27,7 @@ export default function RememberMe({
       <Checkbox
         value={value}
         onValueChange={onValueChange}
-    
+        
       />
       <Text style={{ color: theme.text, fontSize: 14 }}>{label}</Text>
     </Pressable>

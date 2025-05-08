@@ -38,5 +38,6 @@
   "user_created_successfully": "User created successfully!",
   "unexpected_error": "An unexpected error occurred.",
   "invalid_credentials": "Invalid credentials.",
-  "confirm_password": "Confirm password"
+  "confirm_password": "Confirm password",
+  "my_profile": "My Profile"
 }

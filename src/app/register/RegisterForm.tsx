@@ -1,19 +1,19 @@
-import { Text, TouchableOpacity, Alert, StyleProp, ViewStyle } from 'react-native'
-import React, { useState } from 'react'
-import FormInput from '../../shared/components/FormInput'
-import useTheme  from '../../shared/hooks/useTheme';
+import { Text, TouchableOpacity, StyleProp, ViewStyle } from 'react-native';
+import React, { useState } from 'react';
+import FormInput from 'shared/components/FormInput';
+import useTheme from 'shared/hooks/useTheme';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import UsersModel from '../../shared/model/userModel';
-import Flex from '../../shared/components/Flex';
-import SubmitButton from '../../shared/components/buttons/SubmitButton';
+import Flex from 'shared/components/Flex';
+import SubmitButton from 'shared/components/buttons/SubmitButton';
 import RememberMe from 'shared/components/RememberMe';
-import {Controller, useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { LoginType, RegisterUserType } from 'shared/types/UserTypes';
 import { zodResolver } from '@hookform/resolvers/zod';
 import validationStyles from 'shared/styles/validationStyles';
 import { registerUserSchema } from 'shared/schemas/UserSchemas';
-import { useAuth } from 'shared/hooks/useAuth';
+import useUser from 'shared/hooks/useUser';
+
 export default function RegisterForm({ style }: {style?: StyleProp<ViewStyle>}) {
   const { theme, currentlyTheme } = useTheme();
   const { t, i18n } = useTranslation();
@@ -22,7 +22,7 @@ export default function RegisterForm({ style }: {style?: StyleProp<ViewStyle>}) 
   const [error, setError] = useState('');
 
   const router = useRouter();
-  const {registerUser, loginUser} = useAuth();
+  const {registerUser, loginUser} = useUser();
   
 
   const {
