@@ -17,7 +17,7 @@ import RememberMe from 'shared/components/RememberMe';
 import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LoginType } from 'shared/types/UserTypes';
-import { loginSchema } from 'shared/schemas/UserSchemas';
+import { loginSchema } from 'shared/schemas/userSchemas';
 import validationStyles from 'shared/styles/validationStyles';
 import useUser from 'shared/hooks/useUser';
 

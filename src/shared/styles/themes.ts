@@ -1,4 +1,4 @@
-import ThemeType from '../types/ThemeTypes'
+import { ThemeType } from "shared/types/ThemeTypes";
 
 export const dark = {
   primary: '#2D3033',
@@ -9,7 +9,8 @@ export const dark = {
   details: '#4D5056',
   text: '#9BB4C5',
   placeholder: '#9BB4C5',
-  border: '#9BB4C5'
+  border: '#9BB4C5',
+  windowBox: '#25282A'
 } as const;
 
 export const light = {
@@ -21,7 +22,8 @@ export const light = {
   details: '#262F38',
   text: '#262F38',
   placeholder: '#262F38',
-  border: '#262F38'
+  border: '#262F38',
+  windowBox: '#7D8184'
 } as const;
 
 const themes = (theme: string): ThemeType  => {

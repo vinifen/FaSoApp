@@ -1,7 +1,17 @@
 import React from 'react';
 import { TextInput, StyleSheet } from 'react-native';
-import DefaultInputType from 'shared/types/DefaultInputType';
 import useTheme from 'shared/hooks/useTheme';
+
+import { TextInputProps } from 'react-native';
+
+type DefaultInputType = TextInputProps & {
+  value: string;
+  onChangeText: (text: string) => void;
+  placeholder?: string;
+  secureTextEntry?: boolean;
+  customStyle?: object;
+};
+
 
 export default function FormInput({
   value,

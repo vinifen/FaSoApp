@@ -1,9 +1,14 @@
-import { Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { Text, TouchableOpacity, StyleSheet, GestureResponderEvent } from 'react-native'
 import React from 'react'
-import DefaulButtonType from '../../types/DefaultButtonType'
 import useTheme from '../../hooks/useTheme';
 
-export default function SubmitButton({title, onPress, isDisabled = false}: DefaulButtonType ) {
+type DefaultButtonType = {
+  title: string;
+  onPress: (event: GestureResponderEvent) => void;
+  isDisabled?: boolean;
+};
+
+export default function SubmitButton({title, onPress, isDisabled = false}: DefaultButtonType ) {
   const { theme} = useTheme();
   const styles = StyleSheet.create({
     button: {
