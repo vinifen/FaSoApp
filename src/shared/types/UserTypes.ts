@@ -1,6 +1,5 @@
 import { z } from 'zod';
-import { loginSchema, registerUserSchema } from 'shared/schemas/UserSchemas';
-import { ThemeType } from './ThemeTypes';
+import { loginSchema, registerUserSchema } from 'shared/schemas/userSchemas';
 export type LoginType = z.infer<typeof loginSchema>;
 
 

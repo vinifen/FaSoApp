@@ -7,7 +7,7 @@ import {
   languageSchema,
   avatarSchema,
   idSchema,
-} from 'shared/schemas/UserFieldSchemas';
+} from 'shared/schemas/userFieldSchemas';
 import i18n from 'shared/i18n';
 
 export const registerUserSchema = z

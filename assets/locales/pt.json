@@ -38,5 +38,13 @@
   "unexpected_error": "Ocorreu um erro inesperado.",
   "invalid_credentials": "Credenciais inválidas.",
   "confirm_password": "Confirmar senha",
-  "my_profile": "Meu perfil"
+  "my_profile": "Meu perfil",
+  "title_error_amount_min": "O título deve ter pelo menos 3 caracteres.",
+  "title_error_amount_max": "O título deve ter no máximo 100 caracteres.",
+
+  "description_error_amount_min": "A descrição deve ter pelo menos 5 caracteres.",
+  "description_error_amount_max": "A descrição deve ter no máximo 400 caracteres.",
+  "avatar_error_size": "O tamanho do avatar deve ser menor que 10MB.",
+
+  "image_description_error_size": "O tamanho da imagem deve ser menor que 15MB."
 }

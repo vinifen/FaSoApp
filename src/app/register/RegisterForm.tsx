@@ -11,7 +11,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { LoginType, RegisterUserType } from 'shared/types/UserTypes';
 import { zodResolver } from '@hookform/resolvers/zod';
 import validationStyles from 'shared/styles/validationStyles';
-import { registerUserSchema } from 'shared/schemas/UserSchemas';
+import { registerUserSchema } from 'shared/schemas/userSchemas';
 import useUser from 'shared/hooks/useUser';
 
 export default function RegisterForm({ style }: {style?: StyleProp<ViewStyle>}) {

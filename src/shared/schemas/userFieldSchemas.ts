@@ -27,8 +27,11 @@ export const passwordConfirmSchema = z
     path: ['passwordConfirm'],
   });
 export const avatarSchema = z
-  .string().optional();
+  .instanceof(File)
+  .refine(file => file.size <= 10 * 1024 * 1024, {
+    message: i18n.t('avatar_error_size'),
+  })
   
 export const themeSchema = z.string().optional();
 export const languageSchema = z.string().optional();
-export const idSchema = z.number().optional();
+export const idSchema = z.string().optional();
