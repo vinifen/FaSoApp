@@ -1,13 +1,14 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import useTheme from '../../hooks/useTheme'
-import Feather from '@expo/vector-icons/Feather'
-import { useNavigation, DrawerActions } from '@react-navigation/native'
-import { useTranslation } from 'react-i18next'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import ButtonsContainerDrawer from './ButtonsContainerDrawer'
-import UserContainerDrawer from './UserContainerDrawer'
-import Flex from '../Flex'
+import { useNavigation } from "expo-router"
+import { DrawerActions } from "@react-navigation/native"
+import React from "react"
+import { useTranslation } from "react-i18next"
+import { Feather } from "@expo/vector-icons"
+import { View, Text } from "react-native"
+import { useSafeAreaInsets } from "react-native-safe-area-context"
+import useTheme from "shared/hooks/useTheme"
+import Flex from "../Flex"
+import ButtonsContainerDrawer from "./ButtonsContainerDrawer"
+import UserContainerDrawer from "./UserContainerDrawer"
 
 export default function CustomDrawerContent() {
   const { t } = useTranslation()

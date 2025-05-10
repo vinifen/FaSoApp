@@ -10,7 +10,8 @@ export const dark = {
   text: '#9BB4C5',
   placeholder: '#9BB4C5',
   border: '#9BB4C5',
-  windowBox: '#25282A'
+  windowBox: '#25282A',
+  postDescription: '#7B878F',
 } as const;
 
 export const light = {
@@ -23,7 +24,8 @@ export const light = {
   text: '#262F38',
   placeholder: '#262F38',
   border: '#262F38',
-  windowBox: '#7D8184'
+  windowBox: '#7D8184',
+  postDescription: '#454B50',
 } as const;
 
 const themes = (theme: string): ThemeType  => {

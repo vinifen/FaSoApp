@@ -1,11 +1,12 @@
-import { ViewStyle, StyleProp } from 'react-native'
-import React from 'react'
-import Flex from '../Flex'
-import { t } from 'i18next'
-import { H3 } from '../Titles'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
-import useTheme from 'shared/hooks/useTheme';
-import useUserStore  from 'shared/store/userStore';
+import { t } from "i18next";
+import React from "react";
+import { StyleProp, ViewStyle } from "react-native";
+import useTheme from "shared/hooks/useTheme";
+import useUserStore from "shared/store/userStore";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import Flex from "../Flex";
+import { H3 } from "../Titles";
+
 
 export default function UserContainerDrawer({ style }: {style?: StyleProp<ViewStyle>}) {
   const { theme } = useTheme();

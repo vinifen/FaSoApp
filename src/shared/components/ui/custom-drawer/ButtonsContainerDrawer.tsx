@@ -1,16 +1,15 @@
-import { ViewStyle, StyleProp } from 'react-native'
-import React from 'react'
-import Flex from '../Flex'
-import { t } from 'i18next'
-import i18n from '../../i18n'
-import DrawerButton from '../buttons/DrawerButton'
-import { useRouter } from 'expo-router'
-import useTheme from 'shared/hooks/useTheme'
-import { useSegments } from 'expo-router'
-import useUserStore from 'shared/store/userStore'
-import useUser from 'shared/hooks/useUser'
-import userModel from 'shared/model/userModel'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRouter, useSegments } from "expo-router";
+import { t } from "i18next";
+import { StyleProp, ViewStyle } from "react-native";
+import useTheme from "shared/hooks/useTheme";
+import useUser from "shared/hooks/useUser";
+import i18n from "shared/i18n";
+import userModel from "shared/model/userModel";
+import useUserStore from "shared/store/userStore";
+import Flex from "../Flex";
+import DrawerButton from "./DrawerButton";
+
 
 export default function ButtonsContainerDrawer({ style }: {style?: StyleProp<ViewStyle>}) {
   const { setTheme, currentlyTheme } = useTheme();
@@ -52,20 +51,26 @@ export default function ButtonsContainerDrawer({ style }: {style?: StyleProp<Vie
       
       {!user ? (
         <>
-          <DrawerButton
-            title={'Login'}
-            onPress={() => router.push('/login/indexLogin')}
-          />
-          <DrawerButton
-            title={t('register')}
-            onPress={() => router.push('/register/indexRegister')}
-          />
+        {!segments.includes("login") && (<DrawerButton
+          title={'Login'}
+          onPress={() => router.push('/login')}
+        />)}
+        {!segments.includes("register") && (<DrawerButton
+          title={t('register')}
+          onPress={() => router.push('/register')}
+        />)}
         </>
       ) : (
-        <DrawerButton
-          title={t('my_profile')}
-          onPress={() => router.push(`/user/[${user.id}]`)}
-        />
+        <>
+          {!segments.includes("profile") && (<DrawerButton
+            title={t('my_profile')}
+            onPress={() => router.push(`/user/[${user.id}]/profile`)}
+          />)}
+          {!segments.includes("posts") && (<DrawerButton
+            title={t('my_posts')}
+            onPress={() => router.push(`/user/[${user.id}]/posts`)}
+          />)}
+        </>
       )}
       
       <DrawerButton

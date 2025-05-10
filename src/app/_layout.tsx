@@ -1,22 +1,19 @@
-import { Drawer } from 'expo-router/drawer';
-import { TouchableOpacity } from 'react-native';
-import { useColorScheme } from 'react-native';
-import Feather from '@expo/vector-icons/Feather';
-import 'shared/i18n';
-import ThemeProvider from 'shared/context/ThemeProvider';
-import useTheme from '../shared/hooks/useTheme';
-import { useEffect } from 'react';
-import { useNavigation, DrawerActions } from '@react-navigation/native';
-import { StatusBar } from 'expo-status-bar';
-import CustomDrawerContent from '../shared/components/custom-drawer/CustomDrawerContent';
-import { useRouter } from 'expo-router';
-import LogoImage from '../shared/components/LogoImage';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { H1 } from '../shared/components/Titles';
-import useUser from 'shared/hooks/useUser';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation, useRouter } from 'expo-router';
+import { DrawerActions } from '@react-navigation/native';
+import { Drawer } from 'expo-router/drawer';
+import React, { useEffect } from 'react';
+import { useColorScheme, StatusBar, TouchableOpacity } from 'react-native';
+import { Feather } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { LogoImage, CustomDrawerContent } from 'shared/components/ui';
+import { H1 } from 'shared/components/ui/Titles';
+import ThemeProvider from 'shared/context/ThemeProvider';
+import useTheme from 'shared/hooks/useTheme';
+import useUser from 'shared/hooks/useUser';
 
-export default function Layout() {
+
+export default function _layout() {
   return (
     <ThemeProvider>
       <Content />
@@ -31,8 +28,6 @@ function Content() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const {checkUserAuth} = useUser();
-  
-  
   
   const openSidenav = () => {
     navigation.dispatch(DrawerActions.openDrawer());

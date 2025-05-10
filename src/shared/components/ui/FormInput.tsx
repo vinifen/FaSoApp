@@ -1,8 +1,7 @@
-import React from 'react';
-import { TextInput, StyleSheet } from 'react-native';
-import useTheme from 'shared/hooks/useTheme';
 
-import { TextInputProps } from 'react-native';
+
+import { TextInput, TextInputProps, StyleSheet } from 'react-native';
+import useTheme from 'shared/hooks/useTheme';
 
 type DefaultInputType = TextInputProps & {
   value: string;

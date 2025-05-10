@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity, StyleSheet, GestureResponderEvent } from 'react-native'
 import React from 'react'
-import useTheme from '../../hooks/useTheme';
+import useTheme from 'shared/hooks/useTheme';
 
 type DefaultButtonType = {
   title: string;

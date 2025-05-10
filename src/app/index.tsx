@@ -1,5 +1,5 @@
-import {View} from 'react-native';
-import Home from '../shared/components/home/indexHome';
+import { View } from 'react-native';
+import { Home } from 'shared/components/pages';
 
 
 export default function _screen() {

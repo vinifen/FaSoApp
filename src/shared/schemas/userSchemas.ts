@@ -17,7 +17,7 @@ export const registerUserSchema = z
     password: passwordSchema,
     passwordConfirm: z.string(),
     theme: themeSchema, 
-    avatarSchema: avatarSchema,
+    avatarSchema: avatarSchema.optional(),
     language: languageSchema,
     id: idSchema,
   })

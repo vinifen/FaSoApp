@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, TextProps } from 'react-native'
-import useTheme from '../hooks/useTheme'
+import useTheme from 'shared/hooks/useTheme'
 
 export function H1(props: TextProps) {
   const { theme } = useTheme()
@@ -19,5 +19,5 @@ export function H3(props: TextProps) {
 
 export function H4(props: TextProps) {
   const { theme } = useTheme()
-  return <Text {...props} style={[{ fontSize: 12, fontWeight: '300', color: theme.secondary }, props.style]} />
+  return <Text {...props} style={[{ fontSize: 16, fontWeight: '400', color: theme.secondary }, props.style]} />
 }

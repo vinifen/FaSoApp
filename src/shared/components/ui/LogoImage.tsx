@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, View } from 'react-native';
-import useTheme from '../hooks/useTheme';
+import useTheme from '../../hooks/useTheme';
 
 
 export default function LogoImage({ width = 30}: {width?: number}) {
@@ -8,8 +8,8 @@ export default function LogoImage({ width = 30}: {width?: number}) {
   
   const logoSource =
     currentlyTheme === 'light'
-      ? require('../../../assets/images/fasoapp-logo.png')
-      : require('../../../assets/images/fasoapp-logo-darktheme.png');
+      ? require('assets/images/fasoapp-logo.png')
+      : require('assets/images/fasoapp-logo-darktheme.png');
   
   return (
     <View>

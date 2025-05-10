@@ -46,5 +46,6 @@
   "description_error_amount_max": "A descrição deve ter no máximo 400 caracteres.",
   "avatar_error_size": "O tamanho do avatar deve ser menor que 10MB.",
 
-  "image_description_error_size": "O tamanho da imagem deve ser menor que 15MB."
+  "image_description_error_size": "O tamanho da imagem deve ser menor que 15MB.",
+  "my_posts": "Meus posts"
 }

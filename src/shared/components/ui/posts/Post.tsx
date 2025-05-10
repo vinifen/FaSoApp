@@ -1,0 +1,85 @@
+
+import { useState, useEffect } from 'react';
+import { ImageSourcePropType, Image as RNImage, StyleProp, useWindowDimensions, View, ViewStyle, Image, Text } from 'react-native';
+import useTheme from 'shared/hooks/useTheme';
+import { H4 } from '../Titles';
+
+type PostProps = {
+  style?: StyleProp<ViewStyle>;
+  title: string;
+  description: string;
+  username: string;
+  imageSource: ImageSourcePropType;
+};
+
+export default function Post({ style, title, description, username, imageSource }: PostProps) {
+  const { theme } = useTheme();
+  const [aspectRatio, setAspectRatio] = useState<number | null>(null);
+  const { width: screenWidth } = useWindowDimensions();
+
+  useEffect(() => {
+    const { uri } = RNImage.resolveAssetSource(imageSource);
+    RNImage.getSize(uri, (width, height) => {
+      setAspectRatio(width / height);
+    });
+  }, [imageSource]);
+
+  const maxImageHeight = 250;
+
+  return (
+    <View
+      style={[
+        style,
+        {
+          backgroundColor: theme.primary,
+          paddingHorizontal: 8,
+          paddingTop: 6,
+          borderRadius: 15,
+          shadowColor: '#000',
+          shadowOffset: { width: 10, height: 10 },
+          shadowOpacity: 1.2,
+          shadowRadius: 1.41,
+          elevation: 10,
+        },
+      ]}
+    >
+      {aspectRatio && (
+        <View
+          style={{
+            backgroundColor: theme.windowBox,
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 12,
+            borderWidth: 1,
+            borderColor: theme.primary,
+            overflow: 'hidden',
+          }}
+        >
+          <Image
+            source={imageSource}
+            resizeMode="contain"
+            style={{
+              width: '100%',
+              height: Math.min(screenWidth / aspectRatio, maxImageHeight),
+              borderRadius: 10,
+            }}
+          />
+        </View>
+      )}
+      
+      <View style={{ margin: 5 }}>
+        <H4 numberOfLines={1}>
+          {title.length > 40 ? title.slice(0, 40) + '...' : title}
+        </H4>
+        
+        <Text style={{ color: theme.postDescription }} numberOfLines={2}>
+          {description.length > 100 ? description.slice(0, 100) + '...' : description}
+        </Text>
+        
+        <Text style={{ color: theme.secondary, fontSize: 12, marginTop: 2 }} numberOfLines={1}>
+          {username.length > 20 ? username.slice(0, 20) + '...' : username}
+        </Text>
+      </View>
+    </View>
+  );
+}
