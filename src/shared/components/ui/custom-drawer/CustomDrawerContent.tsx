@@ -25,7 +25,7 @@ export default function CustomDrawerContent() {
     <View 
       style={{ 
         flex: 1, 
-        backgroundColor: theme.primary,
+        backgroundColor: theme.background,
         paddingHorizontal: 20, 
       }}
     >
@@ -36,7 +36,6 @@ export default function CustomDrawerContent() {
         style={{
           paddingTop: insets.top,
           height: 60 + insets.top,
-          backgroundColor: theme.primary,
         }}
       >
         <Feather
