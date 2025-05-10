@@ -66,7 +66,6 @@ export default function useUser() {
   const checkUserAuth = async (token: string) => {
     setLoading(true);
     try {
-      console.log("checking auth");
       const response = await userModel().checkAuth(token);
       
       const userRecordData: UserRecordType = response.record;

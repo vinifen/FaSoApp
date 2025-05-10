@@ -52,6 +52,7 @@ export default function userModel() {
   
   const select = async (userId: string, token: string): Promise<UserRecordType> => {
     try {
+      console.log(userId);
       const response = await api.get(selectUri(userId), {
         headers: {
           Authorization: `Bearer ${token}`,
