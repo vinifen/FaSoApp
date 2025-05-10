@@ -4,7 +4,7 @@ import useUserStore from 'shared/store/userStore';
 import { useRoute } from '@react-navigation/native';
 import useUser from 'shared/hooks/useUser';
 
-export default function UserProfile() {
+export default function _screen() {
   const { user } = useUserStore();
   const route = useRoute();
   const { id } = route.params as { id: string };

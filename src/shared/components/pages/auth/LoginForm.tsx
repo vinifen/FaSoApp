@@ -1,25 +1,17 @@
-import {
-  Text,
-  TouchableOpacity,
-  Alert,
-  StyleProp,
-  ViewStyle,
-  StyleSheet,
-} from 'react-native';
-import React, { useState } from 'react';
-import FormInput from '../../shared/components/FormInput';
-import useTheme  from '../../shared/hooks/useTheme';
-import { useRouter } from 'expo-router';
-import { useTranslation } from 'react-i18next';
-import Flex from '../../shared/components/Flex';
-import SubmitButton from '../../shared/components/buttons/SubmitButton';
-import RememberMe from 'shared/components/RememberMe';
-import { Controller, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { LoginType } from 'shared/types/UserTypes';
-import { loginSchema } from 'shared/schemas/userSchemas';
-import validationStyles from 'shared/styles/validationStyles';
-import useUser from 'shared/hooks/useUser';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "expo-router";
+import { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { StyleProp, ViewStyle, TouchableOpacity, Text } from "react-native";
+import useTheme from "shared/hooks/useTheme";
+import useUser from "shared/hooks/useUser";
+import { loginSchema } from "shared/schemas/userSchemas";
+import validationStyles from "shared/styles/validationStyles";
+import { LoginType } from "shared/types/UserTypes";
+import RememberMe from "shared/components/pages/auth/RememberMe";
+import { Flex, FormInput, SubmitButton } from "shared/components/ui";
+
 
 export default function LoginForm({ style }: { style?: StyleProp<ViewStyle> }) {
   const { theme, currentlyTheme } = useTheme();
