@@ -48,5 +48,8 @@
   "avatar_error_size": "Avatar size must be less than 10MB.",
 
   "image_description_error_size": "Image size must be less than 15MB.",
-  "my_posts": "My Posts"
+  "create_posts": "Create Post",
+
+  "post_title": "Title",
+  "post_description": "Description (optional)"
 }

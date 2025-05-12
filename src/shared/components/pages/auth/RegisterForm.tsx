@@ -1,44 +1,44 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
-import { useTranslation } from "react-i18next";
+import { useForm } from "react-hook-form";
 import { StyleProp, ViewStyle, TouchableOpacity, Text } from "react-native";
 import useTheme from "shared/hooks/useTheme";
 import useUser from "shared/hooks/useUser";
-import { registerUserSchema } from "shared/schemas/userSchemas";
+import { getRegisterUserSchema } from "shared/schemas/userSchemas";
 import validationStyles from "shared/styles/validationStyles";
 import { RegisterUserType, LoginType } from "shared/types/UserTypes";
 import RememberMe from "shared/components/pages/auth/RememberMe";
 import { Flex, FormInput, SubmitButton } from "shared/components/ui";
+import { useTranslation } from "react-i18next";
 
 
 
 export default function RegisterForm({ style }: {style?: StyleProp<ViewStyle>}) {
   const { theme, currentlyTheme } = useTheme();
-  const { t, i18n } = useTranslation();
-
+  
   const [rememberMe, setRememberMe] = useState(true);
   const [error, setError] = useState('');
-
+  
   const router = useRouter();
   const {registerUser, loginUser} = useUser();
+  const { t, i18n } = useTranslation();
   
-
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<RegisterUserType>({
-      resolver: zodResolver(registerUserSchema),
+      resolver: zodResolver(getRegisterUserSchema()),
+      mode: "onChange"
     });
   
   async function handleCreateUser(data: RegisterUserType) {
     try {
       console.log('data', data);
-      const resultResgiter = await registerUser(data);
+      await registerUser(data);
       const loginData: LoginType = {email: data.email, password: data.password}
-      const resultLogin = await loginUser(loginData, rememberMe);
+      await loginUser(loginData, rememberMe);
       router.push('');
     } catch (error: any) {
       console.error(error);
@@ -51,90 +51,48 @@ export default function RegisterForm({ style }: {style?: StyleProp<ViewStyle>}) 
   }
   
   return (
-    <Flex gap={20} style={style}> 
-      <Controller
+    <Flex gap={0} style={style}> 
+      <FormInput
         control={control}
-        name="username"
-        render={({ field: { onChange, onBlur, value } }) => (
-          <FormInput
-            key={`username-${i18n.language}-${currentlyTheme}`}
-            placeholder={t('username')}
-            value={value}
-            onBlur={onBlur}
-            onChangeText={onChange}
-          />
-        )}
+        inputName="username"
+        errors={errors}
+        placeholder={t("username")}
       />
-
-      {errors.username && (
-        <Text key={i18n.language} style={validationStyles.error}>{errors.username.message}</Text>
-      )}
-
-      <Controller
+      
+      <FormInput
         control={control}
-        name="email"
-        render={({ field: { onChange, onBlur, value } }) => (
-          <FormInput
-            key={`email-${i18n.language}-${currentlyTheme}`}
-            placeholder={t('email')}
-            value={value}
-            onBlur={onBlur}
-            onChangeText={onChange}
-          />
-        )}
+        inputName="email"
+        errors={errors}
+        placeholder={t("email")}
       />
-
-      {errors.email && (
-        <Text key={i18n.language} style={validationStyles.error}>{errors.email.message}</Text>
-      )}
-
-      <Controller
+      
+      <FormInput
         control={control}
-        name="password"
-        render={({ field: { onChange, onBlur, value } }) => (
-          <FormInput
-            key={`password-${i18n.language}-${currentlyTheme}`}
-            placeholder={t('password')}
-            secureTextEntry
-            onBlur={onBlur}
-            value={value}
-            onChangeText={onChange}
-          />
-        )}
+        inputName="password"
+        secureTextEntry={true}
+        errors={errors}
+        placeholder={t("password")}
       />
-
-      {errors.password && (
-        <Text key={i18n.language} style={validationStyles.error}>{errors.password.message}</Text>
-      )}
-
-      <Controller
+      
+      <FormInput
         control={control}
-        name="passwordConfirm"
-        render={({ field: { onChange, onBlur, value } }) => (
-          <FormInput
-            key={`password_password-${i18n.language}-${currentlyTheme}`}
-            placeholder={t('confirm_password')}
-            secureTextEntry
-            onBlur={onBlur}
-            value={value}
-            onChangeText={onChange}
-          />
-        )}
+        inputName="passwordConfirm"
+        secureTextEntry={true}
+        errors={errors}
+        placeholder={t("password_confirm")}
       />
-
-      {errors.passwordConfirm && (
-        <Text key={i18n.language} style={validationStyles.error}>{errors.passwordConfirm.message}</Text>
-      )}
-      {error != '' && (
-        <Text key={i18n.language} style={validationStyles.error}>{error}</Text>
-      )}
-
+      
       <RememberMe
         style={{ justifyContent: 'center' }}
         value={rememberMe}
         onValueChange={setRememberMe}
       />
-
+      <Flex justify="center" align="center">
+        <Text style={[validationStyles.error, {height: 35, textAlign: "center"}]}>
+          {error ?? ''}
+        </Text>
+      </Flex>
+      
       <SubmitButton
         title={t('register')}
         onPress={handleSubmit((data) => handleCreateUser({
@@ -145,11 +103,12 @@ export default function RegisterForm({ style }: {style?: StyleProp<ViewStyle>}) 
           theme: currentlyTheme,
           language: i18n.language,
         }))}
+      
       />
-
+      
       <TouchableOpacity
-        onPress={() => router.push('../login/indexLogin')}
-        style={{ alignSelf: 'center' }}
+        onPress={() => router.push('../login')}
+        style={{ alignSelf: 'center', marginTop: 14 }}
       >
         <Text style={{ color: theme.secondary, textAlign: 'center' }}>
           {t('or') + ' '}

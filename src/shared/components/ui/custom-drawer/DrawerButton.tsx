@@ -10,14 +10,14 @@ type DefaultButtonType = {
 
 
 export default function DrawerButton({ title = "", onPress}: DefaultButtonType) {
-  const { theme} = useTheme();
+  const { theme } = useTheme();
   const styles = StyleSheet.create({
     button: {
       backgroundColor: theme.button, 
       borderColor: theme.secondary, 
       borderWidth: 1,
       borderRadius: 20,
-      height: 32,
+      height: 34,
       justifyContent: "center",
       alignItems: "center"
     }

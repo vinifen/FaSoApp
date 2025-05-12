@@ -1,26 +1,37 @@
 
 
-import { TextInput, TextInputProps, StyleSheet } from 'react-native';
+import React from 'react';
+import { Controller } from 'react-hook-form';
+import { TextInput, TextInputProps, StyleSheet, Text, View } from 'react-native';
 import useTheme from 'shared/hooks/useTheme';
+import validationStyles from 'shared/styles/validationStyles';
+import i18n from 'shared/i18n';
+import { Flex } from '.';
 
 type DefaultInputType = TextInputProps & {
-  value: string;
-  onChangeText: (text: string) => void;
+  control: any
   placeholder?: string;
   secureTextEntry?: boolean;
   customStyle?: object;
+  errors: Record<string, any>,
+  inputName: string,
+  minHeight?: number,
+  maxHeight?: number,
 };
 
 
 export default function FormInput({
-  value,
-  onChangeText,
+  control,
   placeholder,
   secureTextEntry = false,
   customStyle = {},
+  errors,
+  inputName,
+  minHeight=40,
+  maxHeight,
   ...props
 }: DefaultInputType) {
-  const { theme } = useTheme();
+  const { theme, currentlyTheme } = useTheme();
   
   const styles = StyleSheet.create({
     input: {
@@ -28,21 +39,38 @@ export default function FormInput({
       borderColor: theme.border,
       borderWidth: 1,
       borderRadius: 15,
-      color: theme.text,
       textAlign: 'center',
-      height: 38,
+      color: theme.text,
+      minHeight: minHeight,
+      maxHeight: maxHeight
     },
   });
   
   return (
-    <TextInput
-      style={[styles.input, customStyle]}
-      value={value}
-      onChangeText={onChangeText}
-      placeholder={placeholder}
-      placeholderTextColor={theme.placeholder}
-      secureTextEntry={secureTextEntry}
-      {...props}
+    
+    <Controller
+      key={`${inputName}-${i18n.language}-${currentlyTheme}`}
+      control={control}
+      name={inputName}
+      render={({ field: { onChange, onBlur, value } }) => (
+        <Flex justify='center'>
+          <TextInput
+            style={styles.input}
+            placeholder={placeholder}
+            placeholderTextColor={theme.text}
+            value={value}
+            onBlur={onBlur}
+            onChangeText={onChange}
+            secureTextEntry={secureTextEntry}
+            {...props}
+          />
+          <Flex justify='center' align='center'>
+            <Text style={[validationStyles.error, {height: 35}]}>
+              {errors?.[inputName]?.message ?? ' '}
+            </Text>
+          </Flex>
+        </Flex>
+      )}
     />
   );
 }
