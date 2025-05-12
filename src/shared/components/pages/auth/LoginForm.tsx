@@ -1,12 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { StyleProp, ViewStyle, TouchableOpacity, Text } from "react-native";
 import useTheme from "shared/hooks/useTheme";
 import useUser from "shared/hooks/useUser";
-import { loginSchema } from "shared/schemas/userSchemas";
+import { getLoginSchema } from "shared/schemas/userSchemas";
 import validationStyles from "shared/styles/validationStyles";
 import { LoginType } from "shared/types/UserTypes";
 import RememberMe from "shared/components/pages/auth/RememberMe";
@@ -14,8 +14,8 @@ import { Flex, FormInput, SubmitButton } from "shared/components/ui";
 
 
 export default function LoginForm({ style }: { style?: StyleProp<ViewStyle> }) {
-  const { theme, currentlyTheme } = useTheme();
-  const { t, i18n } = useTranslation();
+  const { theme } = useTheme();
+  const { t } = useTranslation();
   const router = useRouter();
   const [rememberMe, setRememberMe] = useState(true);
   const [error, setError] = useState('');
@@ -24,9 +24,10 @@ export default function LoginForm({ style }: { style?: StyleProp<ViewStyle> }) {
   const { 
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<LoginType>({
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(getLoginSchema()),
+    mode: "onChange"
   });
 
   async function handleLogin(data: LoginType) {
@@ -45,46 +46,22 @@ export default function LoginForm({ style }: { style?: StyleProp<ViewStyle> }) {
   }
 
   return (
-    <Flex gap={20} style={style}>
-      <Controller
+    <Flex gap={0} style={style}>
+      
+      <FormInput
         control={control}
-        name="email"
-        render={({ field: { onChange, onBlur, value } }) => (
-          <FormInput
-            key={`email-${i18n.language}-${currentlyTheme}`}
-            placeholder={t('email')}
-            value={value}
-            onBlur={onBlur}
-            onChangeText={onChange}
-          />
-        )}
-      />
-
-      {errors.email && (
-        <Text key={i18n.language} style={validationStyles.error}>{errors.email.message}</Text>
-      )}
-
-      <Controller
-        control={control}
-        name="password"
-        render={({ field: { onChange, onBlur, value } }) => (
-          <FormInput
-            key={`password-${i18n.language}-${currentlyTheme}`}
-            placeholder={t('password')}
-            secureTextEntry
-            onBlur={onBlur}
-            value={value}
-            onChangeText={onChange}
-          />
-        )}
-      />
-
-      {errors.password && (
-        <Text key={i18n.language} style={validationStyles.error}>{errors.password.message}</Text>
-      )}
-      {error != '' && (
-        <Text key={i18n.language} style={validationStyles.error}>{error}</Text>
-      )}
+        inputName="email"
+        errors={errors}
+        placeholder={t("email")}
+      /> 
+    
+    <FormInput
+      control={control}
+      inputName="password"
+      errors={errors}
+      placeholder={t("password")}
+      secureTextEntry={true}
+    />  
 
       <RememberMe
         style={{ justifyContent: 'center' }}
@@ -92,14 +69,21 @@ export default function LoginForm({ style }: { style?: StyleProp<ViewStyle> }) {
         onValueChange={setRememberMe}
       />
 
+    <Flex justify="center" align="center">
+      <Text style={[validationStyles.error, {height: 35, textAlign: "center"}]}>
+        {error ?? ''}
+      </Text>
+    </Flex>
+
       <SubmitButton
         title={t('login')}
         onPress={handleSubmit(handleLogin)}
+        isDisabled={!isValid}
       />
 
       <TouchableOpacity
-        onPress={() => router.push('../register/indexRegister')}
-        style={{ alignSelf: 'center' }}
+        onPress={() => router.push('../register')}
+        style={{ alignSelf: 'center',  marginTop: 14 }}
       >
         <Text style={{ color: theme.secondary, textAlign: 'center' }}>
           {t('or') + ' '}

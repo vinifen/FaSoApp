@@ -67,8 +67,8 @@ export default function ButtonsContainerDrawer({ style }: {style?: StyleProp<Vie
             onPress={() => router.push(`/user/${user.id}/profile`)}
           />)}
           {!segments.includes("posts") && (<DrawerButton
-            title={t('my_posts')}
-            onPress={() => router.push(`/user/${user.id}/posts`)}
+            title={t('create_posts')}
+            onPress={() => router.push(`/user/${user.id}/posts/create`)}
           />)}
         </>
       )}

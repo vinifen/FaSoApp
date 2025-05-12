@@ -1,11 +1,22 @@
-import { titleSchema, descritionSchema, imageSchema, idPostSchema } from "./postFieldSchemas";
-import { idSchema } from "./userFieldSchemas";
 import { z } from 'zod';
+import { getPostFieldSchemas } from './postFieldSchemas';
+import { getFieldSchemas } from './userFieldSchemas';
 
-export const createPostSchema = z.object({
-  title: titleSchema,
-  description: descritionSchema,
-  image: imageSchema,
-  userId: idSchema,
-  id: idPostSchema
-});
+export function getCreatePostSchema() {
+  const {
+    titleSchema,
+    descriptionSchema,
+    imageSchema,
+    idPostSchema,
+  } = getPostFieldSchemas();
+
+  const { idSchema } = getFieldSchemas();
+
+  return z.object({
+    title: titleSchema,
+    description: descriptionSchema,
+    image: imageSchema,
+    userId: idSchema,
+    id: idPostSchema,
+  });
+}
