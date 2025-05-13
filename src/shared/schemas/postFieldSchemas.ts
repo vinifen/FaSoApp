@@ -10,14 +10,15 @@ export function getPostFieldSchemas() {
 
     descriptionSchema: z
       .string()
-      .min(5, i18n.t('description_error_amount_min'))
-      .max(400, i18n.t('description_error_amount_max')),
+      .max(800, i18n.t('description_error_amount_max'))
+      .optional(),
 
     imageSchema: z
       .instanceof(File)
       .refine(file => file.size <= 15 * 1024 * 1024, {
         message: i18n.t('image_description_error_size'),
-      }),
+      })
+      .optional(),
 
     idPostSchema: z.string().optional(),
   };

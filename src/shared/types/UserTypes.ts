@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import { loginSchema, registerUserSchema } from 'shared/schemas/userSchemas';
-export type LoginType = z.infer<typeof loginSchema>;
+import { getLoginSchema, getRegisterUserSchema } from 'shared/schemas/userSchemas';
+export type LoginType = z.infer<ReturnType<typeof getLoginSchema>>;
 
 
-export type RegisterUserType = z.infer<typeof registerUserSchema>
+export type RegisterUserType = z.infer<ReturnType<typeof getRegisterUserSchema>>
 
 export type UserRecordType = {
   id?: string;

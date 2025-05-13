@@ -2,21 +2,25 @@
 
 import React from 'react';
 import { Controller } from 'react-hook-form';
-import { TextInput, TextInputProps, StyleSheet, Text, View } from 'react-native';
+import { TextInput, TextInputProps, StyleSheet, Text, View, StyleProp, ViewStyle } from 'react-native';
 import useTheme from 'shared/hooks/useTheme';
 import validationStyles from 'shared/styles/validationStyles';
 import i18n from 'shared/i18n';
 import { Flex } from '.';
 
 type DefaultInputType = TextInputProps & {
-  control: any
+  control: any;
   placeholder?: string;
   secureTextEntry?: boolean;
-  customStyle?: object;
-  errors: Record<string, any>,
-  inputName: string,
-  minHeight?: number,
-  maxHeight?: number,
+  customStyle?: StyleProp<ViewStyle>;
+  errors: Record<string, any>;
+  inputName: string;
+  minHeight?: number;
+  maxHeight?: number;
+  textAlignVertical?: string;
+  textAlign?: string;
+  paddingLeft?: number;
+  numberOfLines?: number;
 };
 
 
@@ -24,11 +28,15 @@ export default function FormInput({
   control,
   placeholder,
   secureTextEntry = false,
-  customStyle = {},
+  customStyle,
   errors,
   inputName,
   minHeight=40,
   maxHeight,
+  textAlignVertical = "top",
+  textAlign="center",
+  paddingLeft=0,
+  numberOfLines=1,
   ...props
 }: DefaultInputType) {
   const { theme, currentlyTheme } = useTheme();
@@ -39,10 +47,12 @@ export default function FormInput({
       borderColor: theme.border,
       borderWidth: 1,
       borderRadius: 15,
-      textAlign: 'center',
+      textAlign: textAlign,
       color: theme.text,
       minHeight: minHeight,
-      maxHeight: maxHeight
+      maxHeight: maxHeight,
+      textAlignVertical: textAlignVertical,
+      paddingLeft: paddingLeft,
     },
   });
   
@@ -55,7 +65,7 @@ export default function FormInput({
       render={({ field: { onChange, onBlur, value } }) => (
         <Flex justify='center'>
           <TextInput
-            style={styles.input}
+            style={[styles.input, customStyle]}
             placeholder={placeholder}
             placeholderTextColor={theme.text}
             value={value}
@@ -63,6 +73,9 @@ export default function FormInput({
             onChangeText={onChange}
             secureTextEntry={secureTextEntry}
             {...props}
+            multiline
+            numberOfLines={numberOfLines}
+            
           />
           <Flex justify='center' align='center'>
             <Text style={[validationStyles.error, {height: 35}]}>

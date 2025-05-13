@@ -1,7 +1,7 @@
-import { createPostSchema } from "shared/schemas/postSchemas";
+import { getCreatePostSchema } from "shared/schemas/postSchemas";
 import { z } from "zod";
-
-export type CreatePostType = z.infer<typeof createPostSchema>;
+const {} = getCreatePostSchema();
+export type CreatePostType = z.infer<ReturnType<typeof getCreatePostSchema>>;
 
 
 export type PostRecordType = {
