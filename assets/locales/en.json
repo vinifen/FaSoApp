@@ -43,8 +43,7 @@
   "title_error_amount_min": "Title must be at least 3 characters.",
   "title_error_amount_max": "Title must be at most 100 characters.",
 
-  "description_error_amount_min": "Description must be at least 5 characters.",
-  "description_error_amount_max": "Description must be at most 400 characters.",
+  "description_error_amount_max": "Description must be at most 800 characters.",
   "avatar_error_size": "Avatar size must be less than 10MB.",
 
   "image_description_error_size": "Image size must be less than 15MB.",
