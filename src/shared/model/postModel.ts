@@ -1,6 +1,6 @@
 import i18n from "shared/i18n";
 import { CreatePostType, PostRecordType } from "shared/types/PostTypes";
-import api from "shared/utils/api";
+import api from "src/api/api";
 
 export default function userModel() {
   const createUri = "/api/collections/posts/records";
