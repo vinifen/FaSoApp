@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
-import { View, Text, Button, Image, Alert } from 'react-native';
+import { View, Text, Button, Image, Alert, TouchableOpacity, StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import i18n from 'shared/i18n';
+import useTheme from 'shared/hooks/useTheme';
 
-export default function ImageInput() {
-  const [imageUri, setImageUri] = useState<string | null>(null);
+type imageInput = {
+  onChangeImage: (uri: string | null) => void;
+}
+
+export default function ImageInput({onChangeImage}: imageInput) {
+  const {t} = i18n
+  const {theme} = useTheme();
 
   const pickImage = async () => {
     const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (!permission.granted) {
-      Alert.alert('Permissão necessária', 'Precisamos de acesso à galeria.');
+      Alert.alert(t("permission_required"), t('access_gallery'));
       return;
     }
 
@@ -19,19 +26,28 @@ export default function ImageInput() {
     });
 
     if (!result.canceled) {
-      setImageUri(result.assets[0].uri);
+      
+      onChangeImage(result.assets[0].uri)
     }
   };
 
+  const styles = StyleSheet.create({
+    button: {
+      backgroundColor: theme.button, 
+      borderColor: theme.secondary, 
+      borderWidth: 1,
+      borderStyle: "dashed",
+      borderRadius: 15,
+      height: 42,
+      justifyContent: "center",
+      alignItems: "center"
+    }
+  })
+  
+
   return (
-    <View style={{ alignItems: 'center', marginTop: 20 }}>
-      <Button title="Selecionar Imagem" onPress={pickImage} />
-      {imageUri && (
-        <Image
-          source={{ uri: imageUri }}
-          style={{ width: 200, height: 200, marginTop: 10, borderRadius: 10 }}
-        />
-      )}
-    </View>
+    <TouchableOpacity onPress={pickImage} style={styles.button}>
+      <Text style={{color: theme.secondary}}>{t("select_image")}</Text>
+    </TouchableOpacity>
   );
 }

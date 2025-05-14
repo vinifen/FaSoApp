@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -8,6 +8,7 @@ import useTheme from 'shared/hooks/useTheme';
 import { getCreatePostSchema } from 'shared/schemas/postSchemas';
 import { CreatePostType } from 'shared/types/PostTypes';
 import ImageInput from 'shared/components/ui/ImageInput';
+import ImageLayout from 'shared/components/ui/ImageLayout';
 
 export default function CreatePostForm() {
   const { theme } = useTheme();
@@ -21,6 +22,11 @@ export default function CreatePostForm() {
     resolver: zodResolver(getCreatePostSchema()),
     mode: "onChange"
   })
+  
+
+  const [imageUri, setImageUri] = useState<string | null>(null);
+
+  useEffect(()=>{console.log(imageUri)}, [ imageUri]);
   return (
     <View style={{flex: 1, backgroundColor: theme.background}}>
       <Text>CreatePosts</Text>
@@ -45,7 +51,8 @@ export default function CreatePostForm() {
         numberOfLines={5}
       />  
 
-      <ImageInput></ImageInput>
+      <ImageInput onChangeImage={setImageUri}></ImageInput>
+     
       
       <SubmitButton title={t('create_posts')} onPress={handleSubmit(()=>{})}/>
     </View>

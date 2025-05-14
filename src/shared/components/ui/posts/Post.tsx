@@ -7,6 +7,7 @@ import { H4 } from '../Titles';
 import Flex from '../Flex';
 import CommentButton from './CommentButton';
 import LikeButton from './LikeButton';
+import ImageLayout from '../ImageLayout';
 
 type PostProps = {
   style?: StyleProp<ViewStyle>;
@@ -64,30 +65,7 @@ export default function Post({
         },
       ]}
     >
-      {aspectRatio && imageSource && (
-        <View
-          style={{
-            backgroundColor: theme.windowBox,
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: 12,
-            borderWidth: 1,
-            borderColor: theme.background,
-            overflow: 'hidden',
-            
-          }}
-        >
-          <Image
-            source={imageSource}
-            resizeMode="contain"
-            style={{
-              width: '100%',
-              height: Math.min(screenWidth / aspectRatio, maxImageHeight),
-              borderRadius: 10,
-            }}
-          />
-        </View>
-      )}
+     <ImageLayout imageSource={imageSource}></ImageLayout>
 
       <Flex style={{ marginHorizontal: 5, marginTop: 5 }}>
         <View>

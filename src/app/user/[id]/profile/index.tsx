@@ -2,7 +2,7 @@ import { View, Text } from 'react-native';
 import React from 'react';
 import useUserStore from 'shared/store/userStore';
 import { useRoute } from '@react-navigation/native';
-import useCheckParamId from 'shared/hooks/useCheckParamId';
+import useCheckParamId from 'shared/hooks/useCheckParamUserId';
 
 export default function _screen() {
   const { user } = useUserStore(); 

@@ -49,5 +49,9 @@
   "create_posts": "Criar Post",
 
   "post_title": "Título",
-  "post_description": "Descrição (opcional)"
+  "post_description": "Descrição (opcional)",
+
+  "permission_required": "Permissão necessária",
+  "access_gallery": "Precisamos de acesso à galeria.",
+  "select_image": "Seleciona a Imagem"
 }
