@@ -1,6 +1,6 @@
 import i18n from "shared/i18n";
 import { RegisterUserType, LoginType, UserRecordType } from "shared/types/UserTypes";
-import api from "shared/utils/api";
+import api from "src/api/api";
 
 export default function userModel() {
   const createUri = "/api/collections/users/records";
