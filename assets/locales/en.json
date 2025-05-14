@@ -49,11 +49,12 @@
   "image_description_error_size": "Image size must be less than 15MB.",
   "create_posts": "Create Post",
 
-  "post_title": "Title",
-  "post_description": "Description (optional)",
+  "post_title": "Title*",
+  "post_description": "Description",
 
   "permission_required": "Permission required",
   "access_gallery": "We need access to the gallery.",
-  "select_image": "Select image"
+  "select_image": "Select image",
+  "create_new_post": "Create new post"
 
 }

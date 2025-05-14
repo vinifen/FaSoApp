@@ -6,7 +6,7 @@ import { TextInput, TextInputProps, StyleSheet, Text, View, StyleProp, ViewStyle
 import useTheme from 'shared/hooks/useTheme';
 import validationStyles from 'shared/styles/validationStyles';
 import i18n from 'shared/i18n';
-import { Flex } from '.';
+import Flex from './Flex';
 
 type DefaultInputType = TextInputProps & {
   control: any;

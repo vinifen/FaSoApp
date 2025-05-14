@@ -1,13 +1,12 @@
 
-import React, { useState, useEffect } from 'react';
-import { ImageSourcePropType, Image as RNImage, StyleProp, useWindowDimensions, View, ViewStyle, Image, Text } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import React from 'react';
+import { ImageSourcePropType, StyleProp, View, ViewStyle, Text } from 'react-native';
 import useTheme from 'shared/hooks/useTheme';
 import { H4 } from '../Titles';
 import Flex from '../Flex';
 import CommentButton from './CommentButton';
 import LikeButton from './LikeButton';
-import ImageLayout from '../ImageLayout';
+import ImageLayout from './ImageLayout';
 
 type PostProps = {
   style?: StyleProp<ViewStyle>;
@@ -33,19 +32,6 @@ export default function Post({
   commentsCount,
 }: PostProps) {
   const { theme } = useTheme();
-  const [aspectRatio, setAspectRatio] = useState<number | null>(null);
-  const { width: screenWidth } = useWindowDimensions();
-
-  useEffect(() => {
-    if (imageSource) {
-      const { uri } = RNImage.resolveAssetSource(imageSource);
-      RNImage.getSize(uri, (width, height) => {
-        setAspectRatio(width / height);
-      });
-    }
-  }, [imageSource]);
-
-  const maxImageHeight = 250;
 
   return (
     <View
@@ -65,7 +51,7 @@ export default function Post({
         },
       ]}
     >
-     <ImageLayout imageSource={imageSource}></ImageLayout>
+      <ImageLayout imageSource={imageSource}></ImageLayout>
 
       <Flex style={{ marginHorizontal: 5, marginTop: 5 }}>
         <View>
