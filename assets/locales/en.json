@@ -50,5 +50,10 @@
   "create_posts": "Create Post",
 
   "post_title": "Title",
-  "post_description": "Description (optional)"
+  "post_description": "Description (optional)",
+
+  "permission_required": "Permission required",
+  "access_gallery": "We need access to the gallery.",
+  "select_image": "Select image"
+
 }

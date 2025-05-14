@@ -56,6 +56,17 @@ export default function Home() {
       likesCount: 7,
       commentsCount: 1,
     },
+    {
+      id: "5",
+      title: "Post post",
+      description: "post :)",
+      username: "user12312",
+      imageSource: imageSource,
+      isLiked: true,
+      isCommented: false,
+      likesCount: 70,
+      commentsCount: 100,
+    },
   ];
 
   const { theme } = useTheme();

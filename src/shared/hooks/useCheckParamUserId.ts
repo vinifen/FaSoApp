@@ -3,7 +3,7 @@ import { useFocusEffect, useRouter } from 'expo-router';
 import useUser from 'shared/hooks/useUser';
 
 
-export default function useCheckParamId(id: string) {
+export default function useCheckParamUserId(id: string) {
   const { getUser } = useUser();
   const router = useRouter();
   
