@@ -78,7 +78,7 @@ export default function FormInput({
             
           />
           <Flex justify='center' align='center'>
-            <Text style={[validationStyles.error, {height: 35}]}>
+            <Text style={[validationStyles.error, {height: 30, fontSize: 12}]}>
               {errors?.[inputName]?.message ?? ' '}
             </Text>
           </Flex>

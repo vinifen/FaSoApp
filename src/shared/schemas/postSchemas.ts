@@ -14,9 +14,8 @@ export function getCreatePostSchema() {
 
   return z.object({
     title: titleSchema,
-    description: descriptionSchema,
-    image: imageSchema,
-    userId: idSchema,
-    id: idPostSchema,
+    description: descriptionSchema.optional(),
+    user_id: idSchema,
+    id: idPostSchema.optional(),
   });
 }

@@ -13,12 +13,16 @@ export function getPostFieldSchemas() {
       .max(800, i18n.t('description_error_amount_max'))
       .optional(),
 
-    imageSchema: z
-      .instanceof(File)
-      .refine(file => file.size <= 15 * 1024 * 1024, {
+    imageSchema: z.object({
+      uri: z.string(),
+      name: z.string().min(1),
+      type: z.string().regex(/^image\/(jpeg|png|jpg|webp)$/, {
+        message: i18n.t('image_description_error_type'),
+      }),
+      size: z.number().max(15 * 1024 * 1024, {
         message: i18n.t('image_description_error_size'),
-      })
-      .optional(),
+      }),
+    }).nullable(),
 
     idPostSchema: z.string().optional(),
   };

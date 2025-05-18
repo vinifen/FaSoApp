@@ -45,7 +45,10 @@
   "description_error_amount_max": "A descrição deve ter no máximo 800 caracteres.",
   "avatar_error_size": "O tamanho do avatar deve ser menor que 10MB.",
 
+  "image_not_found_or_invalid": "Imagem não encontrada ou inválida.",
   "image_description_error_size": "O tamanho da imagem deve ser menor que 15MB.",
+  "image_description_error_type": "Tipo de imagem inválido.",
+
   "create_posts": "Criar Post",
 
   "post_title": "Título*",
@@ -55,4 +58,6 @@
   "access_gallery": "Precisamos de acesso à galeria.",
   "select_image": "Selecionar Imagem",
   "create_new_post": "Criar novo post"
+
+  
 }

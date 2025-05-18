@@ -47,6 +47,8 @@
   "avatar_error_size": "Avatar size must be less than 10MB.",
 
   "image_description_error_size": "Image size must be less than 15MB.",
+  "image_not_found_or_invalid": "Image not found or invalid.",
+  "image_description_error_type": "Invalid image type.",
   "create_posts": "Create Post",
 
   "post_title": "Title*",
