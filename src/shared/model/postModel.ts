@@ -5,9 +5,9 @@ import api from "src/api/api";
 export default function postModel() {
   const createUri = "/api/collections/posts/records";
   const selectUri = (postId: string) => `/api/collections/posts/records/${postId}`;
-  const updateUri = (postId: string) => `/api/collections/posts/records/${postId}`;
+ const updateUri = (postId: string) => `/api/collections/posts/records/${postId}`;
 
-  const create = async (postData: any, token: string): Promise<PostRecordType> => {
+  const create = async (postData: FormData, token: string): Promise<PostRecordType> => {
     try {
      
       const response = await api.post(
@@ -16,6 +16,7 @@ export default function postModel() {
         {
           headers: {
             Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data'
           }
         }
       );
@@ -55,28 +56,26 @@ export default function postModel() {
   //   }
   // };
   
-  const update = async (postId: string, formData: FormData, token: string): Promise<PostRecordType> => {
-    try {
-      console.log(postId, " ", formData, " ", token, " ")
-      formData.forEach((value, key) => {
-        console.log(key, value);
-      });
-      const response = await api.patch(updateUri(postId), formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data',
-          
-        },
-        transformRequest: (data) => data,
-      });
+//   const update = async (postId: string, formData: FormData, token: string): Promise<PostRecordType> => {
+//   try {
+//     const response = await api.patch(
+//       updateUri(postId),
+//       formData,
+//       {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//           // NÃO defina 'Content-Type', o axios faz isso automaticamente para FormData
+//         },
+//       }
+//     );
+//     return response.data as PostRecordType;
+//   } catch (error: any) {
+//     console.error("Error in update:", error);
+//     throw new Error(i18n.t("unexpected_error"));
+//   }
+// };
 
-      return response.data;
-    } catch (error: any) {
-      console.error("Error in update:", error);
-      throw new Error(i18n.t("unexpected_error"));
-    }
-  };
 
   
-  return { create, select, update };
+  return { create, select};
 }

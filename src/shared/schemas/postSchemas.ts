@@ -17,5 +17,6 @@ export function getCreatePostSchema() {
     description: descriptionSchema.optional(),
     user_id: idSchema,
     id: idPostSchema.optional(),
+    image: imageSchema.optional()
   });
 }

@@ -15,13 +15,14 @@ import * as ImagePicker from 'expo-image-picker';
 import { NewImageType } from 'shared/types/ImageTypes';
 import useUserStore from 'shared/store/userStore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import mime from "mime";
 
 export default function CreatePostForm() {
   const { theme } = useTheme();
   const { currentlyTheme } = useTheme();
   const {t, i18n} = useTranslation();
   const router = useRouter();
-  const {create, update} = postModel();
+  const { create } = postModel();
   const {user} = useUserStore();
   const {
     control,
@@ -38,7 +39,7 @@ export default function CreatePostForm() {
   const [error, setError] = useState('');
 
 
-  async function handleCreatePost(newPostData: CreatePostType, imageData: NewImageType) {
+  async function handleCreatePost(newPostData: CreatePostType) {
     try {
       if(imageErrors){
         setError("Post data with error");
@@ -47,14 +48,10 @@ export default function CreatePostForm() {
     
       const token = await AsyncStorage.getItem("auth_token");
       if (!token) return;
-
-      const responseCreate = await create(newPostData, token);
+      const postFormData = await toFormData(newPostData);
+      const responseCreate = await create(postFormData, token);
       
-      if(imageData){ 
-        const imageFormData = toImageFormData(imageData);
-        const responseUpdate = await update(responseCreate.id, imageFormData, token);
-        
-      }
+      console.log("response Create: " + responseCreate);
       router.push('');
     } catch (error: any) {
       console.error(error);
@@ -66,15 +63,31 @@ export default function CreatePostForm() {
     }
   }
 
-  function toImageFormData(imageData: NewImageType): FormData {
+  function toFormData(postData: CreatePostType): FormData {
     const formData = new FormData();
-    
-    if (imageData) {
+
+    formData.append('title', postData.title);
+    formData.append('description', postData.description);
+    if (postData.user_id) {
+      formData.append('user_id', String(postData.user_id));
+    }
+
+   
+
+
+    if (postData.image) {
+      const newImageUri =  "file:///" + postData.image.uri.split("file:/").join("");
+
       formData.append('image', {
-        uri: imageData.uri,
-        type: imageData.type,
-        name: imageData.name,
-      } as any);
+      uri : newImageUri,
+      type: mime.getType(newImageUri),
+      name: newImageUri.split("/").pop()
+      });
+    }
+    
+
+    for (const pair of (formData as any)._parts) {
+      console.log(`[FormData] ${pair[0]}:`, pair[1]);
     }
     return formData;
   }
@@ -113,11 +126,11 @@ export default function CreatePostForm() {
           handleCreatePost({
             title: data.title,
             description: data.description,
-            user_id: user?.id
-          }, imageData)
+            user_id: user?.id,
+            image: imageData 
+          })
         )}
       />
-
     </View>
   )
 }
