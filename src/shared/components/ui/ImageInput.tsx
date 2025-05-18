@@ -44,11 +44,13 @@ export default function ImageInput({onChangeImage, onChangeErrors}: imageInput) 
         const fileInfo = await getInfoAsync(resultUri);
 
         if (!fileInfo.exists || !fileInfo.size) {
+          console.log(fileInfo)
           errorsSetter(t("image_not_found_or_invalid"));
           return;
         }
 
         const sizeInMB = fileInfo.size / (1024 * 1024);
+        console.log(sizeInMB);
 
         if (sizeInMB > 15) {
           errorsSetter(t("image_description_error_size"));
@@ -113,6 +115,7 @@ export default function ImageInput({onChangeImage, onChangeErrors}: imageInput) 
   
   const removeImageUri = () => {
     setImageUri(null);
+    onChangeImage(null);
   }
 
   return (
