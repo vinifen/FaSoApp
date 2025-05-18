@@ -22,7 +22,6 @@ export default function CreatePostForm() {
   const { currentlyTheme } = useTheme();
   const {t, i18n} = useTranslation();
   const router = useRouter();
-  const { create } = postModel();
   const {user} = useUserStore();
   const {
     control,
@@ -48,8 +47,8 @@ export default function CreatePostForm() {
     
       const token = await AsyncStorage.getItem("auth_token");
       if (!token) return;
-      const postFormData = await toFormData(newPostData);
-      const responseCreate = await create(postFormData, token);
+      const postFormData = toFormData(newPostData);
+      const responseCreate = await postModel.create(postFormData, token);
       
       console.log("response Create: " + responseCreate);
       router.push('');
@@ -72,8 +71,15 @@ export default function CreatePostForm() {
       formData.append('user_id', String(postData.user_id));
     }
 
-   
-
+    // remove this in the future
+    const comments = Math.floor(Math.random() * 50);
+    const likes = comments + Math.floor(Math.random() * 51);
+    formData.append('username', user?.username);
+    formData.append('comments', comments.toString());
+    formData.append('likes', likes.toString());
+    formData.append('is_liked', Math.random() < 0.6);
+    formData.append('is_commented', Math.random() < 0.2);
+    // remove this in the future
 
     if (postData.image) {
       const newImageUri =  "file:///" + postData.image.uri.split("file:/").join("");

@@ -4,12 +4,12 @@ import { Text } from 'react-native';
 import Flex  from 'shared/components/ui/Flex';
 import useTheme from 'shared/hooks/useTheme';
 
-type Props = {
+type CommentButtonType = {
   commentsCount: number;
   isCommented: boolean;
 };
 
-export default function CommentButton({ commentsCount, isCommented}: Props) {
+export default function CommentButton({ commentsCount, isCommented}: CommentButtonType) {
   const { theme } = useTheme();
 
   return (

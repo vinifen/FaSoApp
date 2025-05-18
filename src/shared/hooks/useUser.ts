@@ -14,7 +14,7 @@ export default function useUser() {
   const loginUser = async (data: LoginType, rememberMe?: boolean) => {
     setLoading(true);
     try {
-      const response = await userModel().login(data);
+      const response = await userModel.login(data);
       const userRecordData: UserRecordType = response.record;
       
       if(rememberMe){ 
@@ -31,7 +31,7 @@ export default function useUser() {
   const registerUser = async (data: RegisterUserType) => {
     setLoading(true);
     try {
-      const response = await userModel().create(data);
+      const response = await userModel.create(data);
       return response.data;
     } finally {
       setLoading(false);
@@ -45,7 +45,7 @@ export default function useUser() {
       
       if (!token) throw new Error("User not authenticated");
       
-      const response = await userModel().select(userId, token);
+      const response = await userModel.select(userId, token);
       
       const userRecordData: UserRecordType = response;
       
@@ -64,20 +64,15 @@ export default function useUser() {
   };
   
   const checkUserAuth = async (token: string) => {
-    setLoading(true);
-    try {
-      const response = await userModel().checkAuth(token);
-      
-      const userRecordData: UserRecordType = response.record;
-      
-      changeUser(userRecordData);
-      
-      await AsyncStorage.setItem("auth_token", response.token);
-      
-      return true;
-    } finally {
-      setLoading(false);
-    }
+    const response = await userModel.checkAuth(token);
+    
+    const userRecordData: UserRecordType = response.record;
+    
+    changeUser(userRecordData);
+    
+    await AsyncStorage.setItem("auth_token", response.token);
+    
+    return true;
   }
   
   const changeUser = async (userData: UserRecordType) => {

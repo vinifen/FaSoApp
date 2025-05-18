@@ -14,5 +14,12 @@ export type PostRecordType = {
   user_id: string;
   created?: string;
   updated?: string;
+
+  // remove this in the future
+  likes?: string;
+  comments?: string;
+  is_liked?: boolean;
+  is_commented?: boolean;
+  username?: string;
 };
   

@@ -104,12 +104,12 @@ export default function ImageInput({onChangeImage, onChangeErrors}: imageInput) 
 
   useEffect(() => {
 
-      if (imageUri) {
-        Image.getSize(imageUri, (width, height) => {
-          setAspectRatio(width / height);
-        });
-      }
-    }, [imageUri]);
+    if (imageUri) {
+      Image.getSize(imageUri, (width, height) => {
+        setAspectRatio(width / height);
+      });
+    }
+  }, [imageUri]);
   
     const maxImageHeight = 300;
   

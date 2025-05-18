@@ -16,8 +16,8 @@ type PostProps = {
   imageSource?: ImageSourcePropType;
   isLiked: boolean;
   isCommented: boolean;
-  likesCount: number;
-  commentsCount: number;
+  likesCount: string;
+  commentsCount: string;
 };
 
 export default function Post({ 
@@ -69,8 +69,8 @@ export default function Post({
             {username.length > 20 ? username.slice(0, 20) + '...' : username}
           </Text>
           <Flex direction='row' style={{ marginRight: 5}} >
-            <CommentButton commentsCount={commentsCount} isCommented={isCommented}/>
-            <LikeButton likesCount={likesCount} isLiked={isLiked}/>
+            <CommentButton commentsCount={Number(commentsCount)} isCommented={isCommented}/>
+            <LikeButton likesCount={Number(likesCount)} isLiked={isLiked}/>
           </Flex>
         </Flex>
       </Flex>

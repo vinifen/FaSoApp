@@ -3,35 +3,48 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Text } from 'react-native';
 import Flex  from 'shared/components/ui/Flex';
 import useTheme from 'shared/hooks/useTheme';
+import { useState } from 'react';
 
-type Props = {
+type LikeButtonType = {
   likesCount: number;
   isLiked: boolean;
 };
 
-export default function LikeButton({ likesCount, isLiked}: Props) {
+export default function LikeButton({ likesCount, isLiked }: LikeButtonType) {
   const { theme } = useTheme();
 
+  const [liked, setLiked] = useState(isLiked);
+  const [count, setCount] = useState(likesCount);
+
+  const handleLike = () => {
+    if (liked) {
+      setCount(count - 1);
+    } else {
+      setCount(count + 1);
+    }
+    setLiked(!liked);
+  };
+
   return (
-    <TouchableOpacity onPress={()=>{}} activeOpacity={0.7} style={{paddingVertical: 10}}>
+    <TouchableOpacity onPress={handleLike} activeOpacity={0.7} style={{ paddingVertical: 10 }}>
       <Flex flex={1} direction="row" gap={4} align="center">
         <Text
           style={{
             color: theme.secondary,
             fontSize: 15,
-            fontWeight: '500',
+            fontWeight: "500",
             width: 50,
-            textAlign: 'right',
-            alignItems: 'center',
+            textAlign: "right",
+            alignItems: "center",
           }}
         >
-          {likesCount}
+          {count}
         </Text>
-        {isLiked ? (
-          <MaterialCommunityIcons name="heart" size={20} color={theme.secondary} />
-        ) : (
-          <MaterialCommunityIcons name="heart-outline" size={20} color={theme.secondary} />
-        )}
+        <MaterialCommunityIcons
+          name={liked ? "heart" : "heart-outline"}
+          size={20}
+          color={theme.secondary}
+        />
       </Flex>
     </TouchableOpacity>
   );
