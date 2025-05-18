@@ -1,25 +1,35 @@
 import i18n from "shared/i18n";
-import { CreatePostType, PostRecordType } from "shared/types/PostTypes";
+import { PostRecordType } from "shared/types/PostTypes";
 import api from "src/api/api";
 
-export default function userModel() {
+export default function postModel() {
   const createUri = "/api/collections/posts/records";
-  const selectUri = (userId: string) => `/api/collections/posts/records/${userId}`;
-  const updateUri = (userId: string) => `/api/collections/posts/records/${userId}`;
+  const selectUri = (postId: string) => `/api/collections/posts/records/${postId}`;
+  const updateUri = (postId: string) => `/api/collections/posts/records/${postId}`;
 
-  const create = async (postData: CreatePostType ) => {
+  const create = async (postData: any, token: string): Promise<PostRecordType> => {
     try {
-      const response = await api.post(createUri, postData);
-      return response;
+     
+      const response = await api.post(
+        createUri,
+        postData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        }
+      );
+      const record: PostRecordType = response.data
+      return record;
     } catch (error: any) {
       console.error(error);
       throw Error(i18n.t("unexpected_error"));
     }
   };
   
-  const select = async (userId: string, token: string): Promise<PostRecordType> => {
+  const select = async (postId: string, token: string): Promise<PostRecordType> => {
     try {
-      const response = await api.get(selectUri(userId), {
+      const response = await api.get(selectUri(postId), {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -30,22 +40,43 @@ export default function userModel() {
       throw new Error("Request failed");
     }
   };
+
+  // const selectAll = async (token: string): Promise<PostRecordType> => {
+  //   try {
+  //     const response = await api.get(selectUri(postId), {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
+  //     return response.data;
+  //   } catch (error: any) {
+  //     console.error("Error in select:", error);
+  //     throw new Error("Request failed");
+  //   }
+  // };
   
-  const update = async (userId: string, data: {}, token: string): Promise<PostRecordType> => {
+  const update = async (postId: string, formData: FormData, token: string): Promise<PostRecordType> => {
     try {
-      console.log(data, userId);
-      const response = await api.patch(updateUri(userId), data, {
+      console.log(postId, " ", formData, " ", token, " ")
+      formData.forEach((value, key) => {
+        console.log(key, value);
+      });
+      const response = await api.patch(updateUri(postId), formData, {
         headers: {
           Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+          
         },
+        transformRequest: (data) => data,
       });
-      console.log("response", response.data);
+
       return response.data;
     } catch (error: any) {
       console.error("Error in update:", error);
-      throw new Error("Request failed");
+      throw new Error(i18n.t("unexpected_error"));
     }
   };
+
   
   return { create, select, update };
 }

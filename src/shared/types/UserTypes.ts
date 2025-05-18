@@ -6,9 +6,9 @@ export type LoginType = z.infer<ReturnType<typeof getLoginSchema>>;
 export type RegisterUserType = z.infer<ReturnType<typeof getRegisterUserSchema>>
 
 export type UserRecordType = {
-  id?: string;
-  email?: string;
-  username?: string;
+  id: string;
+  email: string;
+  username: string;
   avatar?: string;
   collectionId?: string;
   collectionName?: string;

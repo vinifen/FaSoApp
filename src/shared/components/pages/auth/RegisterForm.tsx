@@ -95,6 +95,7 @@ export default function RegisterForm({ style }: {style?: StyleProp<ViewStyle>}) 
       
       <SubmitButton
         title={t('register')}
+        isDisabled={!isValid}
         onPress={handleSubmit((data) => handleCreateUser({
           email: data.email,
           username: data.username,
@@ -103,7 +104,6 @@ export default function RegisterForm({ style }: {style?: StyleProp<ViewStyle>}) 
           theme: currentlyTheme,
           language: i18n.language,
         }))}
-      
       />
       
       <TouchableOpacity

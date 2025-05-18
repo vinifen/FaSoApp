@@ -12,7 +12,7 @@ export default function CreatePost() {
   const {t, i18n} = useTranslation();
   
   return (
-    <View style={{flex: 1, backgroundColor: theme.background, paddingHorizontal: 20 }}>
+    <View style={{flex: 1, backgroundColor: theme.background, paddingHorizontal: "10%" }}>
       <Flex justify='center' align='center' flex={1}>
         <H2>{t("create_new_post")}</H2>
       </Flex>

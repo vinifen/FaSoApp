@@ -11,7 +11,7 @@ export default function _screen() {
   const { t } = useTranslation();
   
   return (
-    <View style={{ backgroundColor: theme.background, flex: 1, paddingHorizontal: 50 }}>
+    <View style={{ backgroundColor: theme.background, flex: 1, paddingHorizontal: "10%" }}>
       <Flex justify="center" align="center" flex={2}>
         <H2 style={{ color: theme.secondary, textAlign: 'center' }}>
           {t('welcome') + " " + t('register')}
