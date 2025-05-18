@@ -3,7 +3,7 @@ import { UserRecordType } from "shared/types/UserTypes";
 
 type UserStore = {
   user: UserRecordType | null
-  setUser: (user: UserRecordType) => void
+  setUser: (user: UserRecordType | null) => void
   removeUser: () => void
 }
 

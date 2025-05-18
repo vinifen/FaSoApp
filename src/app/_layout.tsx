@@ -11,6 +11,7 @@ import { H1 } from 'shared/components/ui/Titles';
 import ThemeProvider from 'shared/context/ThemeProvider';
 import useTheme from 'shared/hooks/useTheme';
 import useUser from 'shared/hooks/useUser';
+import useUserStore from 'shared/store/userStore';
 
 
 export default function _layout() {
@@ -28,6 +29,7 @@ function Content() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const {checkUserAuth} = useUser();
+  const {user, setUser} = useUserStore();
   
   const openSidenav = () => {
     navigation.dispatch(DrawerActions.openDrawer());
@@ -47,7 +49,11 @@ function Content() {
   useEffect(() => {
     const verifySession = async () => {
       const token = await AsyncStorage.getItem('auth_token')
-      if(token) checkUserAuth(token);
+      if(!token){
+        setUser(null);
+        return;
+      } 
+      checkUserAuth(token);
     };
     
     verifySession();

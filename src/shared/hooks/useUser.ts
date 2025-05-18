@@ -7,14 +7,12 @@ import i18n from "shared/i18n";
 import useTheme from "./useTheme";
 
 export default function useUser() {
-  const [loading, setLoading] = useState(false);
   const {setUser, removeUser} = useUserStore();
   const { setTheme } = useTheme();
   
   const loginUser = async (data: LoginType, rememberMe?: boolean) => {
-    setLoading(true);
-    try {
-      const response = await userModel().login(data);
+
+      const response = await userModel.login(data);
       const userRecordData: UserRecordType = response.record;
       
       if(rememberMe){ 
@@ -23,29 +21,23 @@ export default function useUser() {
       changeUser(userRecordData);
       
       return true;
-    } finally {
-      setLoading(false);
-    }
+
   };
   
   const registerUser = async (data: RegisterUserType) => {
-    setLoading(true);
-    try {
-      const response = await userModel().create(data);
+
+      const response = await userModel.create(data);
       return response.data;
-    } finally {
-      setLoading(false);
-    }
+
   };
   
-  const getUser = async (userId: string) => {
-    setLoading(true);
-    try {
+  const getUserAuthenticated = async (userId: string) => {
+
       const token = await AsyncStorage.getItem("auth_token");
       
       if (!token) throw new Error("User not authenticated");
-      
-      const response = await userModel().select(userId, token);
+      checkUserAuth(token);
+      const response = await userModel.select(userId);
       
       const userRecordData: UserRecordType = response;
       
@@ -53,9 +45,7 @@ export default function useUser() {
       
       console.log("user data: ", userRecordData);
       return userRecordData;
-    } finally {
-      setLoading(false);
-    }
+
   };
   
   const logoutUser = async () => {
@@ -63,21 +53,20 @@ export default function useUser() {
     removeUser();
   };
   
-  const checkUserAuth = async (token: string) => {
-    setLoading(true);
-    try {
-      const response = await userModel().checkAuth(token);
-      
-      const userRecordData: UserRecordType = response.record;
-      
-      changeUser(userRecordData);
-      
-      await AsyncStorage.setItem("auth_token", response.token);
-      
-      return true;
-    } finally {
-      setLoading(false);
+  const checkUserAuth = async (token: string): Promise<boolean> => {
+    const response = await userModel.checkAuth(token);
+    if(!response){
+      setUser(null);
+      return false;
     }
+    
+    const userRecordData: UserRecordType = response.record;
+    
+    changeUser(userRecordData);
+    
+    await AsyncStorage.setItem("auth_token", response.token);
+    
+    return true;
   }
   
   const changeUser = async (userData: UserRecordType) => {
@@ -95,8 +84,7 @@ export default function useUser() {
     loginUser,
     registerUser,
     logoutUser,
-    loading,
     checkUserAuth,
-    getUser,
+    getUserAuthenticated,
   };
 }

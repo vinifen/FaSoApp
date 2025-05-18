@@ -17,14 +17,13 @@ export default function ButtonsContainerDrawer({ style }: {style?: StyleProp<Vie
   const segments = useSegments();
   const { user } = useUserStore();
   const { logoutUser } = useUser();
-  const { update } = userModel();
   
   const toggleTheme = async () => {
     const newTheme = currentlyTheme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
     const token = await AsyncStorage.getItem('auth_token');
     if (user?.id && token) {
-      update(user.id, {theme: newTheme}, token);
+      userModel.update(user.id, {theme: newTheme}, token);
     }
   
   }
@@ -36,7 +35,7 @@ export default function ButtonsContainerDrawer({ style }: {style?: StyleProp<Vie
     i18n.changeLanguage(newLocale);
 
     if (user?.id && token) {
-      update(user.id, {language: newLocale}, token);
+      userModel.update(user.id, {language: newLocale}, token);
     }
   }
   

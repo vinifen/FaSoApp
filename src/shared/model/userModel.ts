@@ -1,27 +1,25 @@
 import i18n from "shared/i18n";
-import { RegisterUserType, LoginType, UserRecordType } from "shared/types/UserTypes";
+import {
+  RegisterUserType,
+  LoginType,
+  UserRecordType,
+} from "shared/types/UserTypes";
 import api from "src/api/api";
 
-export default function userModel() {
-  const createUri = "/api/collections/users/records";
-  const loginUri = "/api/collections/users/auth-with-password";
-  const refreshAuthUri = "/api/collections/users/auth-refresh";
-  const selectUri = (userId: string) => `/api/collections/users/records/${userId}`;
-  const updateUri = (userId: string) => `/api/collections/users/records/${userId}`;
-
-  const create = async (userData: RegisterUserType) => {
+const userModel = {
+  create: async (userData: RegisterUserType) => {
     try {
-      const response = await api.post(createUri, userData);
+      const response = await api.post("/api/collections/users/records", userData);
       return response;
     } catch (error: any) {
       console.error(error);
       throw Error(i18n.t("unexpected_error"));
     }
-  };
-  
-  const login = async (userData: LoginType): Promise<{ record: UserRecordType; token: string }> => {
+  },
+
+  login: async (userData: LoginType): Promise<{ record: UserRecordType; token: string }> => {
     try {
-      const response = await api.post(loginUri, {
+      const response = await api.post("/api/collections/users/auth-with-password", {
         identity: userData.email,
         password: userData.password,
       });
@@ -30,56 +28,82 @@ export default function userModel() {
       console.error(error);
       throw Error(i18n.t("invalid_credentials"));
     }
-  };
-  
-  const checkAuth = async (token: string): Promise<{ record: UserRecordType; token: string }> => {
+  },
+
+  checkAuth: async (token: string): Promise<{ record: UserRecordType; token: string } | null> => {
     try {
-      const response = await api.post(
-        refreshAuthUri,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await api.post("/api/collections/users/auth-refresh", {}, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if(!response.data.record || !response.data.token){
+        return null;
+      }
       return { record: response.data.record, token: response.data.token };
     } catch (error: any) {
       console.error(error);
       throw new Error("Request failed");
     }
-  };
-  
-  const select = async (userId: string, token: string): Promise<UserRecordType> => {
+  },
+
+  select: async (userId: string): Promise<UserRecordType> => {
     try {
-      console.log(userId);
-      const response = await api.get(selectUri(userId), {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await api.get(`/api/collections/users/records/${userId}`);
       return response.data;
     } catch (error: any) {
       console.error("Error in select:", error);
       throw new Error("Request failed");
     }
-  };
-  
-  const update = async (userId: string, data: {}, token: string) => {
+  },
+
+  update: async (userId: string, data: {}, token: string) => {
     try {
-      console.log(data, userId);
-      const response = await api.patch(updateUri(userId), data, {
+      const response = await api.patch(`/api/collections/users/records/${userId}`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log("response", response.data);
       return response.data;
     } catch (error: any) {
       console.error("Error in update:", error);
       throw new Error("Request failed");
     }
-  };
-  
-  return { create, login, checkAuth, select, update };
-}
+  },
+  getPostsWithLikesAndComments: async (userId: string) => {
+  const postsRes = await api.get(`/api/collections/posts/records?filter=user='${userId}'`);
+  const posts = postsRes.data.items;
+
+  const postDetails = await Promise.all(posts.map(async (post: any) => {
+    const [likesRes, commentsRes] = await Promise.all([
+      api.get(`/api/collections/likes/records?filter=posts_id='${post.id}'&expand=user`),
+      api.get(`/api/collections/comments/records?filter=posts_id='${post.id}'&expand=user`)
+    ]);
+
+    return {
+      ...post,
+      likes: likesRes.data.items,
+      comments: commentsRes.data.items
+    };
+  }));
+
+  return postDetails;
+},
+
+
+  delete: async (userId: string, token: string) => {
+    try {
+      const response = await api.delete(`/api/collections/users/records/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error: any) {
+      console.error("Error in delete:", error);
+      throw new Error("Request failed");
+    }
+  },
+};
+
+export default userModel;

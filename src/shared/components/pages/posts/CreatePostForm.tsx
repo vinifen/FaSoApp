@@ -22,7 +22,6 @@ export default function CreatePostForm() {
   const { currentlyTheme } = useTheme();
   const {t, i18n} = useTranslation();
   const router = useRouter();
-  const { create } = postModel();
   const {user} = useUserStore();
   const {
     control,
@@ -49,7 +48,7 @@ export default function CreatePostForm() {
       const token = await AsyncStorage.getItem("auth_token");
       if (!token) return;
       const postFormData = await toFormData(newPostData);
-      const responseCreate = await create(postFormData, token);
+      const responseCreate = await postModel.create(postFormData, token);
       
       console.log("response Create: " + responseCreate);
       router.push('');
