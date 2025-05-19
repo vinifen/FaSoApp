@@ -89,7 +89,10 @@ export PATH=$PATH:$ANDROID_SDK/tools/bin
 export PATH=$PATH:$ANDROID_SDK/platform-tools
 #Required for Bare Workflow (adjust the paths to your system)
 export ANDROID_HOME=$HOME/Android/Sdk
-#Java is required, if you are only going to use the emulator, you can use the jre from Android Studio itself, but if you are going to build the project you will need the JDK, in this case install Java separately (sudo apt install openjdk-17-jdk)
+#Java is required, if you are only going to use the emulator, 
+you can use the jre from Android Studio itself, 
+but if you are going to build the project you will need the JDK, 
+in this case install Java separately (sudo apt install openjdk-17-jdk)
 #Option 1: Emulator only
 export JAVA_HOME=$HOME/Applications/android-studio/jre #jbr in newer versions
 #Option 2: Install Java and point to the JDK path
