@@ -7,7 +7,6 @@ import i18n from "shared/i18n";
 import useTheme from "./useTheme";
 
 export default function useUser() {
-  const [loading, setLoading] = useState(false);
   const {setUser, removeUser} = useUserStore();
   const { setTheme } = useTheme();
   
@@ -74,7 +73,6 @@ export default function useUser() {
     loginUser,
     registerUser,
     logoutUser,
-    loading,
     checkUserAuth,
     getUser,
   };
