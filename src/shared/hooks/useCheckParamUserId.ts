@@ -2,7 +2,6 @@ import { useCallback } from 'react';
 import { useFocusEffect, useRouter } from 'expo-router';
 import useUser from 'shared/hooks/useUser';
 
-
 export default function useCheckParamUserId(id: string) {
   const { getUser } = useUser();
   const router = useRouter();

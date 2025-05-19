@@ -14,7 +14,6 @@ export default function CustomDrawerContent() {
   const { t } = useTranslation()
   const { theme } = useTheme()
   const navigation = useNavigation()
-  
   const insets = useSafeAreaInsets()
   
   const closeSidenav = () => {

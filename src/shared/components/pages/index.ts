@@ -1,5 +1,7 @@
 import Home from "./Home";
-import LoginForm from "./auth/LoginForm";
-import RegisterForm from "./auth/RegisterForm";
+import IndexLogin from "./login/IndexLogin";
+import IndexProfile from "./user/profile/IndexProfile";
+import IndexRegister from "./register/IndexRegister";
+import CreatePosts from "./user/posts/CreatePosts";
 
-export { Home, LoginForm, RegisterForm };
+export { Home, IndexLogin, IndexProfile, IndexRegister, CreatePosts, };

@@ -1,13 +1,11 @@
 import { GestureResponderEvent, TouchableOpacity, Text, StyleSheet } from "react-native";
 import useTheme from "shared/hooks/useTheme";
 
-
 type DefaultButtonType = {
   title: string;
   onPress: (event: GestureResponderEvent) => void;
   isDisabled?: boolean;
 };
-
 
 export default function DrawerButton({ title = "", onPress}: DefaultButtonType) {
   const { theme } = useTheme();

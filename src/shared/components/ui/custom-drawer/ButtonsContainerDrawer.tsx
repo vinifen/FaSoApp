@@ -10,7 +10,6 @@ import useUserStore from "shared/store/userStore";
 import Flex from "../Flex";
 import DrawerButton from "./DrawerButton";
 
-
 export default function ButtonsContainerDrawer({ style }: {style?: StyleProp<ViewStyle>}) {
   const { setTheme, currentlyTheme } = useTheme();
   const router = useRouter()
@@ -25,15 +24,14 @@ export default function ButtonsContainerDrawer({ style }: {style?: StyleProp<Vie
     if (user?.id && token) {
       userModel.update(user.id, {theme: newTheme}, token);
     }
-  
   }
   
   const toggleLocale = async () => {
     const newLocale = i18n.language === 'en' ? 'pt' : 'en';
     const token = await AsyncStorage.getItem('auth_token');
-
+    
     i18n.changeLanguage(newLocale);
-
+    
     if (user?.id && token) {
       userModel.update(user.id, {language: newLocale}, token);
     }

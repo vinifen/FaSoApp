@@ -12,7 +12,6 @@ import ThemeProvider from 'shared/context/ThemeProvider';
 import useTheme from 'shared/hooks/useTheme';
 import useUser from 'shared/hooks/useUser';
 
-
 export default function _layout() {
   return (
     <ThemeProvider>

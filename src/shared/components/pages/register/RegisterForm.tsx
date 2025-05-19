@@ -8,11 +8,9 @@ import useUser from "shared/hooks/useUser";
 import { getRegisterUserSchema } from "shared/schemas/userSchemas";
 import validationStyles from "shared/styles/validationStyles";
 import { RegisterUserType, LoginType } from "shared/types/UserTypes";
-import RememberMe from "shared/components/pages/auth/RememberMe";
+import { RememberMe } from "shared/components/ui";
 import { Flex, FormInput, SubmitButton } from "shared/components/ui";
 import { useTranslation } from "react-i18next";
-
-
 
 export default function RegisterForm({ style }: {style?: StyleProp<ViewStyle>}) {
   const { theme, currentlyTheme } = useTheme();
@@ -35,7 +33,6 @@ export default function RegisterForm({ style }: {style?: StyleProp<ViewStyle>}) 
   
   async function handleCreateUser(data: RegisterUserType) {
     try {
-      console.log('data', data);
       await registerUser(data);
       const loginData: LoginType = {email: data.email, password: data.password}
       await loginUser(loginData, rememberMe);
@@ -83,15 +80,10 @@ export default function RegisterForm({ style }: {style?: StyleProp<ViewStyle>}) 
       />
       
       <RememberMe
-        style={{ justifyContent: 'center' }}
+        style={{ justifyContent: 'center', marginBottom: 25 }}
         value={rememberMe}
         onValueChange={setRememberMe}
       />
-      <Flex justify="center" align="center">
-        <Text style={[validationStyles.error, {height: 35, textAlign: "center"}]}>
-          {error ?? ''}
-        </Text>
-      </Flex>
       
       <SubmitButton
         title={t('register')}
@@ -105,10 +97,15 @@ export default function RegisterForm({ style }: {style?: StyleProp<ViewStyle>}) 
           language: i18n.language,
         }))}
       />
+      <Flex justify="center" align="center">
+        <Text style={[validationStyles.error, {height: 35, textAlign: "center"}]}>
+          {error ?? ''}
+        </Text>
+      </Flex>
       
       <TouchableOpacity
         onPress={() => router.push('../login')}
-        style={{ alignSelf: 'center', marginTop: 14 }}
+        style={{ alignSelf: 'center'}}
       >
         <Text style={{ color: theme.secondary, textAlign: 'center' }}>
           {t('or') + ' '}

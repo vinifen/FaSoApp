@@ -12,50 +12,35 @@ export default function useUser() {
   const { setTheme } = useTheme();
   
   const loginUser = async (data: LoginType, rememberMe?: boolean) => {
-    setLoading(true);
-    try {
-      const response = await userModel.login(data);
-      const userRecordData: UserRecordType = response.record;
-      
-      if(rememberMe){ 
-        await AsyncStorage.setItem("auth_token", response.token);
-      }
-      changeUser(userRecordData);
-      
-      return true;
-    } finally {
-      setLoading(false);
+    const response = await userModel.login(data);
+    const userRecordData: UserRecordType = response.record;
+    
+    if(rememberMe){ 
+      await AsyncStorage.setItem("auth_token", response.token);
     }
+    changeUser(userRecordData);
+    
+    return true;
   };
   
   const registerUser = async (data: RegisterUserType) => {
-    setLoading(true);
-    try {
-      const response = await userModel.create(data);
-      return response.data;
-    } finally {
-      setLoading(false);
-    }
+    const response = await userModel.create(data);
+    return response.data;
   };
   
   const getUser = async (userId: string) => {
-    setLoading(true);
-    try {
-      const token = await AsyncStorage.getItem("auth_token");
-      
-      if (!token) throw new Error("User not authenticated");
-      
-      const response = await userModel.select(userId, token);
-      
-      const userRecordData: UserRecordType = response;
-      
-      changeUser(userRecordData);
-      
-      console.log("user data: ", userRecordData);
-      return userRecordData;
-    } finally {
-      setLoading(false);
-    }
+    const token = await AsyncStorage.getItem("auth_token");
+    
+    if (!token) throw new Error("User not authenticated");
+    
+    const response = await userModel.select(userId, token);
+    
+    const userRecordData: UserRecordType = response;
+    
+    changeUser(userRecordData);
+    
+    console.log("user data: ", userRecordData);
+    return userRecordData;
   };
   
   const logoutUser = async () => {

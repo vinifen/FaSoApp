@@ -57,6 +57,10 @@
   "permission_required": "Permission required",
   "access_gallery": "We need access to the gallery.",
   "select_image": "Select image",
-  "create_new_post": "Create new post"
+  "create_new_post": "Create new post",
+
+  "my_posts": "My Posts",
+  "since": "Since",
+  "invalid_image": "Invalid image."
 
 }

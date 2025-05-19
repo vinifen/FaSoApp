@@ -12,10 +12,9 @@ type LikeButtonType = {
 
 export default function LikeButton({ likesCount, isLiked }: LikeButtonType) {
   const { theme } = useTheme();
-
   const [liked, setLiked] = useState(isLiked);
   const [count, setCount] = useState(likesCount);
-
+  
   const handleLike = () => {
     if (liked) {
       setCount(count - 1);
@@ -24,7 +23,7 @@ export default function LikeButton({ likesCount, isLiked }: LikeButtonType) {
     }
     setLiked(!liked);
   };
-
+  
   return (
     <TouchableOpacity onPress={handleLike} activeOpacity={0.7} style={{ paddingVertical: 10 }}>
       <Flex flex={1} direction="row" gap={4} align="center">

@@ -1,6 +1,4 @@
-
 import "i18next";
-
 import en from "../../../assets/locales/en.json";
 import pt from "../../../assets/locales/pt.json";
 

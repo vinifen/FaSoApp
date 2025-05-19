@@ -71,20 +71,6 @@ const userModel = {
       throw new Error("Request failed");
     }
   },
-  
-  // delete: async (userId: string, token: string) => {
-  //   try {
-  //     const response = await api.delete(`/api/collections/users/records/${userId}`, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-  //     return response.data;
-  //   } catch (error: any) {
-  //     console.error("Error in delete:", error);
-  //     throw new Error("Request failed");
-  //   }
-  // },
 };
 
 export default userModel;

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ImageSourcePropType, StyleProp, View, ViewStyle, Text } from 'react-native';
 import useTheme from 'shared/hooks/useTheme';
@@ -52,7 +51,7 @@ export default function Post({
       ]}
     >
       <ImageLayout imageSource={imageSource}></ImageLayout>
-
+      
       <Flex style={{ marginHorizontal: 5, marginTop: 5 }}>
         <View>
           <H4 numberOfLines={1}>

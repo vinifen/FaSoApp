@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { ImageSourcePropType, Image , StyleProp, useWindowDimensions, View, ViewStyle, Text } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { ImageSourcePropType, Image, useWindowDimensions, View } from 'react-native';
 import useTheme from 'shared/hooks/useTheme';
-import Flex from '../Flex';
 
 type ImageLayoutType = {
   imageSource?: ImageSourcePropType | null;
@@ -21,9 +19,8 @@ export default function ImageLayout({ imageSource }: ImageLayoutType) {
       });
     }
   }, [imageSource]);
-
   const maxImageHeight = 250;
-
+  
   return (
     <>
     {aspectRatio && imageSource && (

@@ -1,8 +1,6 @@
-
-
 import React from 'react';
 import { Controller } from 'react-hook-form';
-import { TextInput, TextInputProps, StyleSheet, Text, View, StyleProp, ViewStyle } from 'react-native';
+import { TextInput, TextInputProps, StyleSheet, Text, StyleProp, ViewStyle } from 'react-native';
 import useTheme from 'shared/hooks/useTheme';
 import validationStyles from 'shared/styles/validationStyles';
 import i18n from 'shared/i18n';
@@ -21,6 +19,7 @@ type DefaultInputType = TextInputProps & {
   textAlign?: string;
   paddingLeft?: number;
   numberOfLines?: number;
+  multine?: boolean;
 };
 
 
@@ -37,6 +36,7 @@ export default function FormInput({
   textAlign="center",
   paddingLeft=0,
   numberOfLines=1,
+  multiline=false,
   ...props
 }: DefaultInputType) {
   const { theme, currentlyTheme } = useTheme();
@@ -52,7 +52,7 @@ export default function FormInput({
       minHeight: minHeight,
       maxHeight: maxHeight,
       textAlignVertical: textAlignVertical,
-      paddingLeft: paddingLeft,
+      paddingLeft: paddingLeft
     },
   });
   
@@ -73,7 +73,7 @@ export default function FormInput({
             onChangeText={onChange}
             secureTextEntry={secureTextEntry}
             {...props}
-            multiline
+            multiline={multiline}
             numberOfLines={numberOfLines}
             
           />

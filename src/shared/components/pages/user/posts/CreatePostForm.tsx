@@ -1,26 +1,24 @@
-import { View, Text } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { View, Text } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { FormInput, SubmitButton } from 'shared/components/ui';
+import { Flex, FormInput, SubmitButton } from 'shared/components/ui';
 import useTheme from 'shared/hooks/useTheme';
 import { getCreatePostSchema } from 'shared/schemas/postSchemas';
 import { CreatePostType } from 'shared/types/PostTypes';
-import ImageInput from 'shared/components/ui/ImageInput';
-import ImageLayout from 'shared/components/ui/posts/ImageLayout';
+import { ImageInput } from 'shared/components/ui';
 import { useRouter } from 'expo-router';
 import postModel from 'shared/model/postModel';
-import * as ImagePicker from 'expo-image-picker';
 import { NewImageType } from 'shared/types/ImageTypes';
 import useUserStore from 'shared/store/userStore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import mime from "mime";
+import validationStyles from 'shared/styles/validationStyles';
 
 export default function CreatePostForm() {
   const { theme } = useTheme();
-  const { currentlyTheme } = useTheme();
-  const {t, i18n} = useTranslation();
+  const { t } = useTranslation();
   const router = useRouter();
   const {user} = useUserStore();
   const {
@@ -32,12 +30,10 @@ export default function CreatePostForm() {
     mode: "onChange"
   })
   
-
   const [imageData, setImageData] = useState<NewImageType | null>(null);
   const [imageErrors, setImageErrors] = useState<string | null>(null);
   const [error, setError] = useState('');
-
-
+  
   async function handleCreatePost(newPostData: CreatePostType) {
     try {
       if(imageErrors){
@@ -50,7 +46,6 @@ export default function CreatePostForm() {
       const postFormData = toFormData(newPostData);
       const responseCreate = await postModel.create(postFormData, token);
       
-      console.log("response Create: " + responseCreate);
       router.push('');
     } catch (error: any) {
       console.error(error);
@@ -66,12 +61,12 @@ export default function CreatePostForm() {
     const formData = new FormData();
 
     formData.append('title', postData.title);
-    formData.append('description', postData.description);
+
     if (postData.user_id) {
       formData.append('user_id', String(postData.user_id));
     }
 
-    // remove this in the future
+    // remove this in the future (mock)
     const comments = Math.floor(Math.random() * 50);
     const likes = comments + Math.floor(Math.random() * 51);
     formData.append('username', user?.username);
@@ -79,7 +74,7 @@ export default function CreatePostForm() {
     formData.append('likes', likes.toString());
     formData.append('is_liked', Math.random() < 0.6);
     formData.append('is_commented', Math.random() < 0.2);
-    // remove this in the future
+    // remove this in the future (mock)
 
     if (postData.image) {
       const newImageUri =  "file:///" + postData.image.uri.split("file:/").join("");
@@ -91,15 +86,9 @@ export default function CreatePostForm() {
       });
     }
     
-
-    for (const pair of (formData as any)._parts) {
-      console.log(`[FormData] ${pair[0]}:`, pair[1]);
-    }
     return formData;
   }
-
-
-  useEffect(()=>{console.log(imageData)}, [ imageData]);
+  
   return (
     <View style={{backgroundColor: theme.background}}>
       
@@ -119,6 +108,7 @@ export default function CreatePostForm() {
         errors={errors}
         placeholder={t("post_description")}
         textAlign='left'
+        multiline={true}
         paddingLeft={10}
         numberOfLines={10}
       />
@@ -137,6 +127,11 @@ export default function CreatePostForm() {
           })
         )}
       />
+      <Flex justify="center" align="center">
+        <Text style={[validationStyles.error, {height: 35, textAlign: "center"}]}>
+          {error ?? ''}
+        </Text>
+      </Flex>
     </View>
   )
 }
