@@ -61,5 +61,11 @@
 
   "my_posts": "Meus Posts",
   "since": "Desde",
-  "invalid_image": "Imagem invalida."
+  "invalid_image": "Imagem invalida.",
+
+  "open_action": "Abrir Action Sheet",
+  "handle_block": "Manipular Bloco",
+  "show_block": "Show Block",
+  "hide_block": "Hide Block",
+  "cancel": "Cancelar"
 }

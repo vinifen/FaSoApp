@@ -1,4 +1,4 @@
-# FaSoApp  
+# FaSoApp Assessment 1
 #### v-alpha-1.0
 
 FaSoApp (Fake Social App) is an application developed using React Native, designed to simulate a social network. The main goal of this project was to gain hands-on experience with React Native and learn how to build a mobile application from the ground up.

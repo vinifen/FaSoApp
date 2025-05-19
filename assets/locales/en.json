@@ -61,6 +61,13 @@
 
   "my_posts": "My Posts",
   "since": "Since",
-  "invalid_image": "Invalid image."
+  "invalid_image": "Invalid image.",
+
+
+  "open_action": "Open Action Sheet",
+  "handle_block": "Handle Block",
+  "show_block": "Mostrar Bloco",
+  "hide_block": "Esconder Bloco",
+  "cancel": "Cancel"
 
 }

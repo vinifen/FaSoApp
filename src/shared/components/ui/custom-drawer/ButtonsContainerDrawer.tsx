@@ -94,6 +94,10 @@ export default function ButtonsContainerDrawer({ style }: {style?: StyleProp<Vie
           }}
         />
       )}
+      <DrawerButton
+          title={'Action Sheet'}
+          onPress={() => router.push('/action-sheet')}
+        />
     </Flex>
   );
 }
