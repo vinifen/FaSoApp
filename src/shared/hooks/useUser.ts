@@ -39,7 +39,6 @@ export default function useUser() {
     
     changeUser(userRecordData);
     
-    console.log("user data: ", userRecordData);
     return userRecordData;
   };
   
