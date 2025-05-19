@@ -61,9 +61,11 @@ npm run backend
 ### Default PocketBase admin login (backend):
 
 - Access: http://0.0.0.0:8090/_/
+#### Email:
 ```
 user@email.com
 ```
+#### Password:
 ```
 1234567890
 ```
@@ -102,9 +104,11 @@ npm start
 
 ### 🧪 Default User for Testing
 
+#### Email:
 ```
 test@email.com
 ```
+#### Password:
 ```
 123456
 ```
