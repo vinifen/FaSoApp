@@ -125,7 +125,7 @@ test@email.com
 ![homesidenav](https://res.cloudinary.com/dp5iuxy1u/image/upload/v1747681050/light-menu-fasoapp_m4bprj.png)
 
 #### Profile Page: 
-![profile](https://res.cloudinary.com/dp5iuxy1u/image/upload/v1747681050/profile-fasoapp_vy0ekx.png)
+![profilepage](https://res.cloudinary.com/dp5iuxy1u/image/upload/v1747681050/profile-fasoapp_vy0ekx.png)
 
 #### Register & Sidenav (Light Mode):
 ![registersidenav](https://res.cloudinary.com/dp5iuxy1u/image/upload/v1747681050/menu-register-fasoapp_eyotap.png)
